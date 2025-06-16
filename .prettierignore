@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.nuxt/
+.output/
+dist/
+
+# Generated files
+*.generated.*
+.nitro/
+
+# Logs
+*.log
+
+# Environment files
+.env*
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Database
+prisma/migrations/
+
+# Build output
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

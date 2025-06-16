@@ -1,0 +1,135 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
+}
+
+model Profile {
+    id           String        @id @db.Uuid // References auth.users.id
+    email        String        @unique
+    fullName     String?       @map("full_name")
+    avatarUrl    String?       @map("avatar_url")
+    createdAt    DateTime      @default(now()) @map("created_at")
+    updatedAt    DateTime      @updatedAt @map("updated_at") // Relations
+    subscription Subscription?
+    projects     Project[]
+    teamMembers  TeamMember[]
+    feedback     Feedback[]
+    activityLogs ActivityLog[]
+
+    @@map("profiles")
+}
+
+model Subscription {
+    id                   String    @id @default(cuid())
+    profileId            String    @unique @map("profile_id") @db.Uuid
+    stripeCustomerId     String?   @unique @map("stripe_customer_id")
+    stripeSubscriptionId String?   @unique @map("stripe_subscription_id")
+    stripePriceId        String?   @map("stripe_price_id")
+    status               String? // active, canceled, incomplete, etc.
+    currentPeriodStart   DateTime? @map("current_period_start")
+    currentPeriodEnd     DateTime? @map("current_period_end")
+    cancelAtPeriodEnd    Boolean   @default(false) @map("cancel_at_period_end")
+    createdAt            DateTime  @default(now()) @map("created_at")
+    updatedAt            DateTime  @updatedAt @map("updated_at")
+
+    // Relations
+    profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+    @@map("subscriptions")
+}
+
+model Project {
+    id          String   @id @default(cuid())
+    name        String
+    description String?
+    ownerId     String   @map("owner_id") @db.Uuid
+    teamId      String?  @map("team_id")
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
+
+    // Relations
+    owner Profile @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    team  Team?   @relation(fields: [teamId], references: [id], onDelete: SetNull)
+
+    @@map("projects")
+}
+
+model Team {
+    id          String   @id @default(cuid())
+    name        String
+    description String?
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
+
+    // Relations
+    members  TeamMember[]
+    projects Project[]
+
+    @@map("teams")
+}
+
+model TeamMember {
+    id        String   @id @default(cuid())
+    teamId    String   @map("team_id")
+    profileId String   @map("profile_id") @db.Uuid
+    role      String   @default("member") // owner, admin, member
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    // Relations
+    team    Team    @relation(fields: [teamId], references: [id], onDelete: Cascade)
+    profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+    @@unique([teamId, profileId])
+    @@map("team_members")
+}
+
+model Newsletter {
+    id        String   @id @default(cuid())
+    email     String   @unique
+    createdAt DateTime @default(now()) @map("created_at")
+
+    @@map("newsletter")
+}
+
+model Feedback {
+    id        String   @id @default(cuid())
+    profileId String?  @map("profile_id") @db.Uuid
+    name      String?
+    email     String?
+    message   String
+    status    String   @default("pending") // pending, reviewed, resolved
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    // Relations
+    profile Profile? @relation(fields: [profileId], references: [id], onDelete: SetNull)
+
+    @@map("feedback")
+}
+
+model ActivityLog {
+    id          String   @id @default(cuid())
+    userId      String?  @map("user_id") @db.Uuid
+    action      String // e.g., "user_created", "project_deleted", "team_updated"
+    entityType  String?  @map("entity_type") // e.g., "user", "project", "team"
+    entityId    String?  @map("entity_id")
+    description String?
+    metadata    Json? // Additional data about the action
+    ipAddress   String?  @map("ip_address")
+    userAgent   String?  @map("user_agent")
+    createdAt   DateTime @default(now()) @map("created_at")
+
+    // Relations
+    user Profile? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+    @@map("activity_logs")
+}

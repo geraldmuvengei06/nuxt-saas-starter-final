@@ -1,0 +1,223 @@
+<template>
+  <div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8">
+      <div>
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Sign in to your account
+        </h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          Or
+          <NuxtLink to="/register" class="text-primary-600 hover:text-primary-500 font-medium">
+            create a new account
+          </NuxtLink>
+        </p>
+      </div>
+
+      <UCard>
+        <form class="space-y-6" @submit.prevent="signIn">
+          <div>
+            <UFormGroup label="Email address" name="email" required>
+              <UInput v-model="form.email" type="email" placeholder="Enter your email" required />
+            </UFormGroup>
+          </div>
+
+          <div>
+            <UFormGroup label="Password" name="password" required>
+              <UInput
+                v-model="form.password"
+                type="password"
+                placeholder="Enter your password"
+                required
+              />
+            </UFormGroup>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <UCheckbox v-model="form.rememberMe" label="Remember me" />
+            <NuxtLink
+              to="/forgot-password"
+              class="text-primary-600 hover:text-primary-500 text-sm font-medium"
+            >
+              Forgot your password?
+            </NuxtLink>
+          </div>
+
+          <UButton type="submit" block :loading="loading" :disabled="loading" class="w-full">
+            Sign in
+          </UButton>
+
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-300" />
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="bg-white px-2 text-gray-500">Or continue with</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <UButton
+              variant="outline"
+              :loading="providerLoading === 'google'"
+              :disabled="loading || providerLoading"
+              @click="signInWithProvider('google')"
+            >
+              <Icon name="i-simple-icons-google" class="h-5 w-5" />
+              Google
+            </UButton>
+            <UButton
+              variant="outline"
+              :loading="providerLoading === 'github'"
+              :disabled="loading || providerLoading"
+              @click="signInWithProvider('github')"
+            >
+              <Icon name="i-simple-icons-github" class="h-5 w-5" />
+              GitHub
+            </UButton>
+          </div>
+
+          <UButton
+            variant="outline"
+            block
+            :loading="magicLinkLoading"
+            :disabled="loading || !form.email"
+            @click="signInWithMagicLink"
+          >
+            Send Magic Link
+          </UButton>
+        </form>
+      </UCard>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+definePageMeta({
+  layout: 'auth',
+  middleware: 'guest',
+})
+
+const supabase = useSupabaseClient()
+const router = useRouter()
+const toast = useToast()
+const config = useRuntimeConfig()
+
+// Check if we're in demo mode
+const isDemoMode = config.public.supabaseUrl === 'https://placeholder.supabase.co'
+
+const loading = ref(false)
+const providerLoading = ref<string | null>(null)
+const magicLinkLoading = ref(false)
+
+const form = reactive({
+  email: '',
+  password: '',
+  rememberMe: false,
+})
+
+const signIn = async () => {
+  if (isDemoMode) {
+    toast.add({
+      title: 'Demo Mode',
+      description:
+        'This is a demo. Please configure Supabase credentials to enable authentication.',
+      color: 'blue',
+    })
+    return
+  }
+
+  try {
+    loading.value = true
+    const { error } = await supabase.auth.signInWithPassword({
+      email: form.email,
+      password: form.password,
+    })
+
+    if (error) throw error
+
+    toast.add({
+      title: 'Success!',
+      description: 'Welcome back!',
+      color: 'green',
+    })
+
+    await router.push('/dashboard')
+  } catch (error: any) {
+    toast.add({
+      title: 'Error',
+      description: error.message,
+      color: 'red',
+    })
+  } finally {
+    loading.value = false
+  }
+}
+
+const signInWithProvider = async (provider: 'google' | 'github') => {
+  if (isDemoMode) {
+    toast.add({
+      title: 'Demo Mode',
+      description: 'Social authentication requires Supabase configuration.',
+      color: 'blue',
+    })
+    return
+  }
+
+  try {
+    providerLoading.value = provider
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/confirm`,
+      },
+    })
+
+    if (error) throw error
+  } catch (error: any) {
+    toast.add({
+      title: 'Error',
+      description: error.message,
+      color: 'red',
+    })
+  } finally {
+    providerLoading.value = null
+  }
+}
+
+const signInWithMagicLink = async () => {
+  if (isDemoMode) {
+    toast.add({
+      title: 'Demo Mode',
+      description: 'Magic link authentication requires Supabase configuration.',
+      color: 'blue',
+    })
+    return
+  }
+
+  try {
+    magicLinkLoading.value = true
+    const { error } = await supabase.auth.signInWithOtp({
+      email: form.email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/confirm`,
+      },
+    })
+
+    if (error) throw error
+
+    toast.add({
+      title: 'Magic link sent!',
+      description: 'Check your email for the login link.',
+      color: 'green',
+    })
+  } catch (error: any) {
+    toast.add({
+      title: 'Error',
+      description: error.message,
+      color: 'red',
+    })
+  } finally {
+    magicLinkLoading.value = false
+  }
+}
+</script>
