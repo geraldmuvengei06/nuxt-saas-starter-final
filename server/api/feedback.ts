@@ -1,4 +1,5 @@
 import { prisma } from '~/lib/prisma'
+import { serverSupabaseUser } from '#supabase/server'
 
 export default defineEventHandler(async event => {
   const method = getMethod(event)
@@ -46,7 +47,7 @@ export default defineEventHandler(async event => {
       }
 
       // Get user if authenticated
-      const user = await getServerSupabaseUser(event)
+      const user = await serverSupabaseUser(event)
       const profileId = user?.id || null
 
       const feedback = await prisma.feedback.create({

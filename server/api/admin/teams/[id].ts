@@ -1,8 +1,9 @@
 import { adminService } from '~/server/services/adminService'
+import { serverSupabaseUser } from '#supabase/server'
 
 export default defineEventHandler(async event => {
   // Check if user is authenticated
-  const user = await getServerSupabaseUser(event)
+  const user = await serverSupabaseUser(event)
   if (!user) {
     throw createError({
       statusCode: 401,

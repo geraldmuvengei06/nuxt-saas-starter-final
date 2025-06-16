@@ -149,7 +149,7 @@ Adhere to the following directory structure:
 
 - For any application-specific feature (e.g., "Projects"), create the corresponding repository and service.
 - Create the API endpoints in server/api/ that use these services.
-- Secure these endpoints by checking for an active user session using getServerSupabaseUser(event).
+- Secure these endpoints by checking for an active user session using serverSupabaseUser(event).
 
 ## **6\. Testing Strategy**
 

@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { serverSupabaseUser } from '#supabase/server'
 
 const createCheckoutSessionSchema = z.object({
   priceId: z.string(),
@@ -8,7 +9,7 @@ const createCheckoutSessionSchema = z.object({
 export default defineEventHandler(async event => {
   try {
     // Check authentication
-    const user = await getServerSupabaseUser(event)
+    const user = await serverSupabaseUser(event)
     if (!user) {
       throw createError({
         statusCode: 401,

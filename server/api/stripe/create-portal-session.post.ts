@@ -1,7 +1,9 @@
+import { serverSupabaseUser, serverSupabaseServiceRole } from '#supabase/server'
+
 export default defineEventHandler(async event => {
   try {
     // Check authentication
-    const user = await getServerSupabaseUser(event)
+    const user = await serverSupabaseUser(event)
     if (!user) {
       throw createError({
         statusCode: 401,
@@ -10,7 +12,7 @@ export default defineEventHandler(async event => {
     }
 
     // Get customer from Supabase
-    const supabase = await getServerSupabaseServiceRole(event)
+    const supabase = await serverSupabaseServiceRole(event)
     const { data: subscription } = await supabase
       .from('subscriptions')
       .select('stripe_customer_id')

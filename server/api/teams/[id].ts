@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { teamService } from '~/server/services/teamService'
+import { serverSupabaseUser } from '#supabase/server'
 
 const updateTeamSchema = z.object({
   name: z.string().min(1, 'Team name is required').max(100, 'Team name too long').optional(),
@@ -8,7 +9,7 @@ const updateTeamSchema = z.object({
 
 export default defineEventHandler(async event => {
   try {
-    const user = await getServerSupabaseUser(event)
+    const user = await serverSupabaseUser(event)
 
     if (!user) {
       throw createError({

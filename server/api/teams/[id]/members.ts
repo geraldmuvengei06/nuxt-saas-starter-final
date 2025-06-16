@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { teamService } from '~/server/services/teamService'
+import { serverSupabaseUser } from '#supabase/server'
 
 const addMemberSchema = z.object({
   profileId: z.string().min(1, 'Profile ID is required'),
@@ -12,7 +13,7 @@ const updateMemberSchema = z.object({
 
 export default defineEventHandler(async event => {
   try {
-    const user = await getServerSupabaseUser(event)
+    const user = await serverSupabaseUser(event)
 
     if (!user) {
       throw createError({
