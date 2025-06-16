@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { ProjectService } from '~/server/services/projectService'
+import { serverSupabaseUser } from '#supabase/server'
 
 const projectService = new ProjectService()
 
@@ -12,7 +13,7 @@ const createProjectSchema = z.object({
 export default defineEventHandler(async event => {
   try {
     // Check authentication
-    const user = await getServerSupabaseUser(event)
+    const user = await serverSupabaseUser(event)
     if (!user) {
       throw createError({
         statusCode: 401,

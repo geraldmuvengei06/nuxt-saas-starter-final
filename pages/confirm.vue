@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="bg-gray-50000 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8"
-  >
+  <div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -28,7 +26,7 @@
           <p class="mb-4 text-gray-600">
             {{ error }}
           </p>
-          <UButton @click="$router.push('/login')"> Back to Login </UButton>
+          <UButton @click="router.push(localePath('/login'))"> Back to Login </UButton>
         </div>
       </UCard>
 
@@ -51,35 +49,83 @@ definePageMeta({
 })
 
 const supabase = useSupabaseClient()
+const user = useSupabaseUser()
 const router = useRouter()
 const route = useRoute()
 const toast = useToast()
+const localePath = useLocalePath()
 
 const loading = ref(true)
 const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
-    const { error: authError } = await supabase.auth.exchangeCodeForSession(
-      route.query.code as string
-    )
+    // Get the current session to check if user is already authenticated
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
 
-    if (authError) throw authError
+    if (session?.user) {
+      // User is already authenticated, likely came from email confirmation
+      toast.add({
+        title: 'Welcome!',
+        description: 'Your account has been verified successfully.',
+        color: 'green',
+      })
 
-    toast.add({
-      title: 'Welcome!',
-      description: 'Your account has been verified successfully.',
-      color: 'green',
-    })
+      // Redirect to dashboard after a short delay
+      setTimeout(() => {
+        router.push(localePath('/dashboard'))
+      }, 2000)
+    } else {
+      // Check for error in URL params (common when confirmation fails)
+      const errorDescription = route.query.error_description as string
+      const errorCode = route.query.error as string
 
-    // Redirect to dashboard after a short delay
-    setTimeout(() => {
-      router.push('/dashboard')
-    }, 2000)
+      if (errorDescription || errorCode) {
+        throw new Error(errorDescription || `Confirmation failed: ${errorCode}`)
+      }
+
+      // If no session and no error, this might be an invalid or expired link
+      throw new Error(
+        'Invalid or expired confirmation link. Please request a new confirmation email.'
+      )
+    }
   } catch (err: any) {
-    error.value = err.message || 'An error occurred during verification'
+    console.error('Confirmation error:', err)
+
+    // Handle specific error cases
+    if (err.message?.includes('expired')) {
+      error.value = 'This confirmation link has expired. Please request a new one.'
+    } else if (err.message?.includes('invalid') || err.message?.includes('Invalid')) {
+      error.value =
+        'This confirmation link is invalid. Please check your email for the correct link.'
+    } else if (err.message?.includes('already_confirmed')) {
+      error.value = 'This email has already been confirmed. You can log in now.'
+    } else {
+      error.value = err.message || 'An error occurred during verification. Please try again.'
+    }
   } finally {
     loading.value = false
   }
 })
+
+// Watch for user changes (handles the case where user gets authenticated during the process)
+watch(
+  user,
+  newUser => {
+    if (newUser && !error.value && loading.value === false) {
+      toast.add({
+        title: 'Welcome!',
+        description: 'Your account has been verified successfully.',
+        color: 'green',
+      })
+
+      setTimeout(() => {
+        router.push(localePath('/dashboard'))
+      }, 2000)
+    }
+  },
+  { immediate: false }
+)
 </script>
