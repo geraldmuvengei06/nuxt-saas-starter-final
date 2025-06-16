@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="bg-gray-50000 min-h-screen">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-3xl">
         <div class="overflow-hidden rounded-lg bg-white shadow">
@@ -123,7 +123,7 @@
             <!-- Billing History -->
             <div class="mt-8">
               <h2 class="mb-4 text-lg font-medium text-gray-900">Billing History</h2>
-              <div class="rounded-md bg-gray-50 p-4">
+              <div class="bg-gray-50000 rounded-md p-4">
                 <p class="text-center text-sm text-gray-500">
                   Billing history will appear here once you have an active subscription. You can
                   manage your invoices through the billing portal.

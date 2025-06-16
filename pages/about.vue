@@ -78,7 +78,7 @@
     </div>
 
     <!-- Features Section -->
-    <div class="bg-gray-50">
+    <div class="bg-gray-50000">
       <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div class="lg:grid lg:grid-cols-3 lg:gap-8">
           <div class="text-center">

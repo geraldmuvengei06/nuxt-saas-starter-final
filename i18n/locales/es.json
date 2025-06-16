@@ -1,0 +1,209 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "refresh": "Actualizar",
+    "success": "Éxito",
+    "error": "Error",
+    "warning": "Advertencia",
+    "info": "Información",
+    "or": "O"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "projects": "Proyectos",
+    "teams": "Equipos",
+    "billing": "Facturación",
+    "settings": "Configuración",
+    "admin": "Admin",
+    "pricing": "Precios",
+    "features": "Características",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "signIn": "Iniciar Sesión",
+    "signOut": "Cerrar Sesión",
+    "register": "Registrarse"
+  },
+  "home": {
+    "hero": {
+      "title": "Construye tu SaaS más rápido que nunca",
+      "subtitle": "Un kit completo de inicio de Nuxt 3 SaaS con autenticación, pagos, equipos y más. Todo lo que necesitas para lanzar tu negocio SaaS.",
+      "getStarted": "Comenzar",
+      "viewPricing": "Ver precios"
+    },
+    "features": {
+      "title": "Todo lo que necesitas para construir un SaaS",
+      "subtitle": "Componentes y características pre-construidas para acelerar tu desarrollo",
+      "authentication": {
+        "name": "Autenticación",
+        "description": "Sistema de autenticación completo con inicio de sesión social, enlaces mágicos y soporte 2FA."
+      },
+      "payments": {
+        "name": "Pagos",
+        "description": "Integración de Stripe con suscripciones, portal de facturación y webhooks."
+      },
+      "teams": {
+        "name": "Equipos",
+        "description": "Arquitectura multi-inquilino con gestión de equipos y acceso basado en roles."
+      },
+      "database": {
+        "name": "Base de Datos",
+        "description": "Backend de Supabase con Prisma ORM y Seguridad a Nivel de Fila."
+      },
+      "admin": {
+        "name": "Panel de Administración",
+        "description": "Panel de super administrador para gestión de usuarios y analíticas."
+      },
+      "stack": {
+        "name": "Stack Moderno",
+        "description": "Construido con Nuxt 3, Vue 3, TypeScript y Tailwind CSS."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para sumergirte?",
+      "subtitle": "Comienza tu prueba gratuita hoy.",
+      "getStarted": "Comenzar"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Inicia sesión en tu cuenta",
+      "createAccount": "crear una nueva cuenta",
+      "email": "Dirección de correo electrónico",
+      "password": "Contraseña",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "signIn": "Iniciar sesión",
+      "orContinueWith": "O continúa con",
+      "google": "Google",
+      "github": "GitHub",
+      "sendMagicLink": "Enviar Enlace Mágico",
+      "enterEmail": "Ingresa tu correo electrónico",
+      "enterPassword": "Ingresa tu contraseña"
+    },
+    "register": {
+      "title": "Crea tu cuenta",
+      "haveAccount": "¿Ya tienes una cuenta?",
+      "signIn": "iniciar sesión",
+      "email": "Dirección de correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "name": "Nombre completo",
+      "createAccount": "Crear cuenta",
+      "termsAndConditions": "Acepto los Términos y Condiciones",
+      "enterEmail": "Ingresa tu correo electrónico",
+      "enterPassword": "Ingresa tu contraseña",
+      "confirmYourPassword": "Confirma tu contraseña",
+      "enterName": "Ingresa tu nombre completo"
+    },
+    "messages": {
+      "loginSuccess": "¡Sesión iniciada exitosamente!",
+      "loginError": "Error al iniciar sesión. Por favor verifica tus credenciales.",
+      "registerSuccess": "¡Cuenta creada exitosamente! Por favor verifica tu correo electrónico.",
+      "registerError": "Error al crear la cuenta. Por favor intenta de nuevo.",
+      "magicLinkSent": "¡Enlace mágico enviado! Revisa tu correo electrónico.",
+      "magicLinkError": "Error al enviar el enlace mágico. Por favor intenta de nuevo.",
+      "logoutSuccess": "¡Sesión cerrada exitosamente!",
+      "sessionExpired": "Tu sesión ha expirado. Por favor inicia sesión de nuevo."
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "¡Bienvenido de vuelta",
+    "overview": "Resumen",
+    "recentActivity": "Actividad Reciente",
+    "quickActions": "Acciones Rápidas",
+    "createProject": "Crear Proyecto",
+    "inviteTeamMember": "Invitar Miembro del Equipo",
+    "viewBilling": "Ver Facturación"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "createNew": "Crear Nuevo Proyecto",
+    "noProjects": "No se encontraron proyectos",
+    "createFirst": "Crea tu primer proyecto para comenzar",
+    "name": "Nombre del Proyecto",
+    "description": "Descripción",
+    "created": "Creado",
+    "updated": "Actualizado",
+    "actions": "Acciones"
+  },
+  "teams": {
+    "title": "Equipos",
+    "createNew": "Crear Nuevo Equipo",
+    "joinTeam": "Unirse al Equipo",
+    "members": "Miembros",
+    "invitations": "Invitaciones",
+    "settings": "Configuración del Equipo",
+    "name": "Nombre del Equipo",
+    "role": "Rol",
+    "owner": "Propietario",
+    "admin": "Administrador",
+    "member": "Miembro",
+    "invited": "Invitado",
+    "active": "Activo"
+  },
+  "billing": {
+    "title": "Facturación y Suscripción",
+    "currentPlan": "Plan Actual",
+    "usage": "Uso",
+    "invoices": "Facturas",
+    "paymentMethods": "Métodos de Pago",
+    "upgradePlan": "Actualizar Plan",
+    "manageBilling": "Gestionar Facturación",
+    "cancelSubscription": "Cancelar Suscripción"
+  },
+  "settings": {
+    "title": "Configuración",
+    "profile": "Perfil",
+    "security": "Seguridad",
+    "notifications": "Notificaciones",
+    "preferences": "Preferencias",
+    "account": "Cuenta"
+  },
+  "admin": {
+    "title": "Panel de Administración",
+    "users": "Usuarios",
+    "projects": "Proyectos",
+    "teams": "Equipos",
+    "analytics": "Analíticas",
+    "feedback": "Comentarios",
+    "activity": "Registros de Actividad"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "selectTheme": "Seleccionar tema"
+  },
+  "language": {
+    "selectLanguage": "Seleccionar idioma"
+  },
+  "test": {
+    "title": "Pruebas de i18n y Tema",
+    "themeSection": "Pruebas de Tema",
+    "languageSection": "Pruebas de Idioma",
+    "currentTheme": "Tema actual",
+    "currentLanguage": "Idioma actual",
+    "sampleContent": "Contenido Traducido de Muestra",
+    "description": "Esta página demuestra la funcionalidad de internacionalización y cambio de tema. Prueba cambiar el idioma y el tema usando los selectores de arriba.",
+    "navigation": "Elementos de navegación"
+  },
+  "errors": {
+    "pageNotFound": "Página no encontrada",
+    "serverError": "Error del servidor",
+    "unauthorizedAccess": "Acceso no autorizado",
+    "genericError": "Algo salió mal",
+    "tryAgain": "Intentar de nuevo"
+  }
+}

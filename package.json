@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.22.0",
+    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/i18n": "^9.5.5",
     "@nuxtjs/supabase": "^1.5.2",
     "@pinia/nuxt": "^0.5.5",
     "@prisma/client": "^5.22.0",

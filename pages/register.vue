@@ -1,12 +1,16 @@
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+  <div
+    class="bg-gray-50000 flex min-h-screen items-center justify-center px-4 py-12 dark:bg-gray-900 sm:px-6 lg:px-8"
+  >
     <div class="w-full max-w-md space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Create your account</h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Or
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+          {{ $t('auth.register.title') }}
+        </h2>
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+          {{ $t('common.or') }}
           <NuxtLink to="/login" class="text-primary-600 hover:text-primary-500 font-medium">
-            sign in to your existing account
+            {{ $t('auth.register.signIn') }}
           </NuxtLink>
         </p>
       </div>
@@ -14,34 +18,47 @@
       <UCard>
         <form class="space-y-6" @submit.prevent="signUp">
           <div>
-            <UFormGroup label="Full Name" name="fullName">
-              <UInput v-model="form.fullName" type="text" placeholder="Enter your full name" />
-            </UFormGroup>
-          </div>
-
-          <div>
-            <UFormGroup label="Email address" name="email" required>
-              <UInput v-model="form.email" type="email" placeholder="Enter your email" required />
-            </UFormGroup>
-          </div>
-
-          <div>
-            <UFormGroup label="Password" name="password" required>
+            <UFormGroup :label="$t('auth.register.name')" name="fullName">
               <UInput
-                v-model="form.password"
-                type="password"
-                placeholder="Create a password"
+                v-model="form.fullName"
+                type="text"
+                :placeholder="$t('auth.register.enterName')"
+              />
+            </UFormGroup>
+          </div>
+
+          <div>
+            <UFormGroup :label="$t('auth.register.email')" name="email" required>
+              <UInput
+                v-model="form.email"
+                type="email"
+                :placeholder="$t('auth.register.enterEmail')"
                 required
               />
             </UFormGroup>
           </div>
 
           <div>
-            <UFormGroup label="Confirm Password" name="confirmPassword" required>
+            <UFormGroup :label="$t('auth.register.password')" name="password" required>
+              <UInput
+                v-model="form.password"
+                type="password"
+                :placeholder="$t('auth.register.enterPassword')"
+                required
+              />
+            </UFormGroup>
+          </div>
+
+          <div>
+            <UFormGroup
+              :label="$t('auth.register.confirmPassword')"
+              name="confirmPassword"
+              required
+            >
               <UInput
                 v-model="form.confirmPassword"
                 type="password"
-                placeholder="Confirm your password"
+                :placeholder="$t('auth.register.confirmYourPassword')"
                 required
               />
             </UFormGroup>

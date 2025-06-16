@@ -1,14 +1,17 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="bg-gray-50000 min-h-screen">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-3xl">
         <div class="overflow-hidden rounded-lg bg-white shadow">
           <div class="px-4 py-5 sm:p-6">
             <div class="sm:flex sm:items-center">
               <div class="sm:flex-auto">
-                <h1 class="text-xl font-semibold text-gray-900">Dashboard</h1>
+                <h1 class="text-xl font-semibold text-gray-900">
+                  {{ $t('dashboard.title') }}
+                </h1>
                 <p class="mt-2 text-sm text-gray-700">
-                  Welcome back, {{ user?.user_metadata?.full_name || user?.email }}!
+                  {{ $t('dashboard.welcome') }},
+                  {{ user?.user_metadata?.full_name || user?.email }}!
                 </p>
               </div>
             </div>

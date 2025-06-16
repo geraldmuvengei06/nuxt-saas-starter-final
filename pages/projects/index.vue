@@ -1,15 +1,17 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="bg-gray-50000 min-h-screen">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-          <h1 class="text-xl font-semibold text-gray-900">Projects</h1>
+          <h1 class="text-xl font-semibold text-gray-900">
+            {{ $t('projects.title') }}
+          </h1>
           <p class="mt-2 text-sm text-gray-700">Manage all your projects in one place.</p>
         </div>
         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <UButton @click="$router.push('/projects/new')">
             <UIcon name="i-heroicons-plus" class="mr-2 h-4 w-4" />
-            New Project
+            {{ $t('projects.createNew') }}
           </UButton>
         </div>
       </div>

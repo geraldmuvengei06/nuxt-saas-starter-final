@@ -1,0 +1,247 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info",
+    "or": "Or"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "teams": "Teams",
+    "billing": "Billing",
+    "settings": "Settings",
+    "admin": "Admin",
+    "pricing": "Pricing",
+    "features": "Features",
+    "about": "About",
+    "contact": "Contact",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "register": "Get started"
+  },
+  "home": {
+    "hero": {
+      "title": "Build your SaaS faster than ever",
+      "subtitle": "A complete Nuxt 3 SaaS starter kit with authentication, payments, teams, and more. Everything you need to launch your SaaS business.",
+      "getStarted": "Get started",
+      "viewPricing": "View pricing"
+    },
+    "features": {
+      "title": "Everything you need to build a SaaS",
+      "subtitle": "Pre-built components and features to accelerate your development",
+      "authentication": {
+        "name": "Authentication",
+        "description": "Complete auth system with social logins, magic links, and 2FA support."
+      },
+      "payments": {
+        "name": "Payments",
+        "description": "Stripe integration with subscriptions, billing portal, and webhooks."
+      },
+      "teams": {
+        "name": "Teams",
+        "description": "Multi-tenant architecture with team management and role-based access."
+      },
+      "database": {
+        "name": "Database",
+        "description": "Supabase backend with Prisma ORM and Row-Level Security."
+      },
+      "admin": {
+        "name": "Admin Panel",
+        "description": "Super admin dashboard for user management and analytics."
+      },
+      "stack": {
+        "name": "Modern Stack",
+        "description": "Built with Nuxt 3, Vue 3, TypeScript, and Tailwind CSS."
+      }
+    },
+    "cta": {
+      "title": "Ready to dive in?",
+      "subtitle": "Start your free trial today.",
+      "getStarted": "Get started"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in to your account",
+      "createAccount": "create a new account",
+      "email": "Email address",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot your password?",
+      "signIn": "Sign in",
+      "orContinueWith": "Or continue with",
+      "google": "Google",
+      "github": "GitHub",
+      "sendMagicLink": "Send Magic Link",
+      "enterEmail": "Enter your email",
+      "enterPassword": "Enter your password"
+    },
+    "register": {
+      "title": "Create your account",
+      "haveAccount": "Already have an account?",
+      "signIn": "sign in",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "name": "Full name",
+      "createAccount": "Create account",
+      "termsAndConditions": "I agree to the Terms and Conditions",
+      "enterEmail": "Enter your email",
+      "enterPassword": "Enter your password",
+      "confirmYourPassword": "Confirm your password",
+      "enterName": "Enter your full name"
+    },
+    "forgotPassword": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email to receive a reset link",
+      "email": "Email",
+      "sendLink": "Send reset link",
+      "backToLogin": "Back to login"
+    },
+    "resetPassword": {
+      "title": "Set new password",
+      "subtitle": "Enter your new password",
+      "password": "New password",
+      "confirmPassword": "Confirm new password",
+      "updatePassword": "Update password",
+      "enterNewPassword": "Enter your new password",
+      "confirmNewPassword": "Confirm your new password"
+    },
+    "messages": {
+      "loginSuccess": "Successfully signed in!",
+      "loginError": "Failed to sign in. Please check your credentials.",
+      "registerSuccess": "Account created successfully! Please check your email.",
+      "registerError": "Failed to create account. Please try again.",
+      "magicLinkSent": "Magic link sent! Check your email.",
+      "magicLinkError": "Failed to send magic link. Please try again.",
+      "logoutSuccess": "Successfully signed out!",
+      "sessionExpired": "Your session has expired. Please sign in again.",
+      "resetLinkSent": "Reset link sent!",
+      "resetLinkError": "Failed to send reset link. Please try again.",
+      "checkEmail": "Check your email for the reset link.",
+      "passwordUpdateSuccess": "Password updated successfully!",
+      "passwordUpdateError": "Failed to update password. Please try again.",
+      "redirectingToDashboard": "Redirecting to dashboard..."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "overview": "Overview",
+    "recentActivity": "Recent Activity",
+    "quickActions": "Quick Actions",
+    "createProject": "Create Project",
+    "inviteTeamMember": "Invite Team Member",
+    "viewBilling": "View Billing"
+  },
+  "projects": {
+    "title": "Projects",
+    "createNew": "Create New Project",
+    "noProjects": "No projects found",
+    "createFirst": "Create your first project to get started",
+    "name": "Project Name",
+    "description": "Description",
+    "created": "Created",
+    "updated": "Updated",
+    "actions": "Actions"
+  },
+  "teams": {
+    "title": "Teams",
+    "createNew": "Create New Team",
+    "joinTeam": "Join Team",
+    "members": "Members",
+    "invitations": "Invitations",
+    "settings": "Team Settings",
+    "name": "Team Name",
+    "role": "Role",
+    "owner": "Owner",
+    "admin": "Admin",
+    "member": "Member",
+    "invited": "Invited",
+    "active": "Active"
+  },
+  "billing": {
+    "title": "Billing & Subscription",
+    "currentPlan": "Current Plan",
+    "usage": "Usage",
+    "invoices": "Invoices",
+    "paymentMethods": "Payment Methods",
+    "upgradePlan": "Upgrade Plan",
+    "manageBilling": "Manage Billing",
+    "cancelSubscription": "Cancel Subscription"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "security": "Security",
+    "notifications": "Notifications",
+    "preferences": "Preferences",
+    "account": "Account"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "users": "Users",
+    "projects": "Projects",
+    "teams": "Teams",
+    "analytics": "Analytics",
+    "feedback": "Feedback",
+    "activity": "Activity Logs"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "selectTheme": "Select theme"
+  },
+  "language": {
+    "selectLanguage": "Select language"
+  },
+  "forms": {
+    "required": "This field is required",
+    "emailInvalid": "Please enter a valid email",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordsDoNotMatch": "Passwords do not match"
+  },
+  "test": {
+    "title": "i18n and Theme Testing",
+    "themeSection": "Theme Testing",
+    "languageSection": "Language Testing",
+    "currentTheme": "Current theme",
+    "currentLanguage": "Current language",
+    "sampleContent": "Sample Translated Content",
+    "description": "This page demonstrates internationalization and theme switching functionality. Try changing the language and theme using the switchers above.",
+    "navigation": "Navigation items",
+    "authPages": "Authentication Pages",
+    "loginFlow": "Login Flow",
+    "passwordReset": "Password Reset",
+    "translations": "Translations",
+    "forgotPasswordTranslations": "Forgot Password",
+    "resetPasswordTranslations": "Reset Password",
+    "errorMessages": "Error Messages",
+    "implementationStatus": "Implementation Status",
+    "completedFeatures": "Completed Features",
+    "routes": "Available Routes"
+  },
+  "errors": {
+    "pageNotFound": "Page not found",
+    "serverError": "Server error",
+    "unauthorizedAccess": "Unauthorized access",
+    "genericError": "Something went wrong",
+    "tryAgain": "Try again"
+  }
+}

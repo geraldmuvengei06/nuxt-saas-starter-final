@@ -1,14 +1,16 @@
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+  <div
+    class="bg-gray-50000 flex min-h-screen items-center justify-center px-4 py-12 dark:bg-gray-800 sm:px-6 lg:px-8"
+  >
     <div class="w-full max-w-md space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+          {{ $t('auth.login.title') }}
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Or
+        <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+          {{ $t('common.or') }}
           <NuxtLink to="/register" class="text-primary-600 hover:text-primary-500 font-medium">
-            create a new account
+            {{ $t('auth.login.createAccount') }}
           </NuxtLink>
         </p>
       </div>
@@ -16,34 +18,39 @@
       <UCard>
         <form class="space-y-6" @submit.prevent="signIn">
           <div>
-            <UFormGroup label="Email address" name="email" required>
-              <UInput v-model="form.email" type="email" placeholder="Enter your email" required />
+            <UFormGroup :label="$t('auth.login.email')" name="email" required>
+              <UInput
+                v-model="form.email"
+                type="email"
+                :placeholder="$t('auth.login.enterEmail')"
+                required
+              />
             </UFormGroup>
           </div>
 
           <div>
-            <UFormGroup label="Password" name="password" required>
+            <UFormGroup :label="$t('auth.login.password')" name="password" required>
               <UInput
                 v-model="form.password"
                 type="password"
-                placeholder="Enter your password"
+                :placeholder="$t('auth.login.enterPassword')"
                 required
               />
             </UFormGroup>
           </div>
 
           <div class="flex items-center justify-between">
-            <UCheckbox v-model="form.rememberMe" label="Remember me" />
+            <UCheckbox v-model="form.rememberMe" :label="$t('auth.login.rememberMe')" />
             <NuxtLink
               to="/forgot-password"
               class="text-primary-600 hover:text-primary-500 text-sm font-medium"
             >
-              Forgot your password?
+              {{ $t('auth.login.forgotPassword') }}
             </NuxtLink>
           </div>
 
           <UButton type="submit" block :loading="loading" :disabled="loading" class="w-full">
-            Sign in
+            {{ $t('auth.login.signIn') }}
           </UButton>
 
           <div class="relative">
@@ -51,7 +58,9 @@
               <div class="w-full border-t border-gray-300" />
             </div>
             <div class="relative flex justify-center text-sm">
-              <span class="bg-white px-2 text-gray-500">Or continue with</span>
+              <span class="bg-white px-2 text-gray-500 dark:bg-gray-800 dark:text-gray-400">{{
+                $t('auth.login.orContinueWith')
+              }}</span>
             </div>
           </div>
 
@@ -63,7 +72,7 @@
               @click="signInWithProvider('google')"
             >
               <Icon name="i-simple-icons-google" class="h-5 w-5" />
-              Google
+              {{ $t('auth.login.google') }}
             </UButton>
             <UButton
               variant="outline"
@@ -72,7 +81,7 @@
               @click="signInWithProvider('github')"
             >
               <Icon name="i-simple-icons-github" class="h-5 w-5" />
-              GitHub
+              {{ $t('auth.login.github') }}
             </UButton>
           </div>
 
@@ -83,7 +92,7 @@
             :disabled="loading || !form.email"
             @click="signInWithMagicLink"
           >
-            Send Magic Link
+            {{ $t('auth.login.sendMagicLink') }}
           </UButton>
         </form>
       </UCard>

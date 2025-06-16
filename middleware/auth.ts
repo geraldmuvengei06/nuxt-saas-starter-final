@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware((_to, _from) => {
+export default defineNuxtRouteMiddleware((to, from) => {
   const user = useSupabaseUser()
   const config = useRuntimeConfig()
 
@@ -7,6 +7,12 @@ export default defineNuxtRouteMiddleware((_to, _from) => {
 
   if (isDemoMode) {
     // In demo mode, simulate being logged in for protected pages
+    return
+  }
+
+  // Check if this is just a locale change (same path, different locale)
+  if (from && to.path.replace(/^\/[a-z]{2}/, '') === from.path.replace(/^\/[a-z]{2}/, '')) {
+    // This is just a locale change, don't redirect to login
     return
   }
 

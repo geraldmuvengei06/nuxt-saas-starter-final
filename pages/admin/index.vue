@@ -144,7 +144,7 @@
       </template>
 
       <div class="space-y-4">
-        <div class="flex items-center space-x-3 rounded-lg bg-gray-50 p-3 dark:bg-gray-800">
+        <div class="bg-gray-50000 flex items-center space-x-3 rounded-lg p-3 dark:bg-gray-800">
           <Icon name="i-heroicons-information-circle" class="h-5 w-5 text-blue-500" />
           <div>
             <p class="text-sm font-medium text-gray-900 dark:text-white">Admin Dashboard</p>
@@ -155,7 +155,7 @@
           </div>
         </div>
 
-        <div class="flex items-center space-x-3 rounded-lg bg-gray-50 p-3 dark:bg-gray-800">
+        <div class="bg-gray-50000 flex items-center space-x-3 rounded-lg p-3 dark:bg-gray-800">
           <Icon name="i-heroicons-exclamation-triangle" class="h-5 w-5 text-amber-500" />
           <div>
             <p class="text-sm font-medium text-gray-900 dark:text-white">Security Notice</p>

@@ -1,21 +1,24 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="relative bg-white">
+    <section
+      class="relative bg-gradient-to-br from-emerald-100 via-green-200 to-transparent dark:from-emerald-900 dark:via-green-800 dark:to-transparent"
+    >
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="relative z-10 pb-20 pt-14 sm:py-24">
           <div class="mx-auto max-w-4xl text-center">
-            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Build your SaaS faster than ever
+            <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">
+              {{ $t('home.hero.title') }}
             </h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600">
-              A complete Nuxt 3 SaaS starter kit with authentication, payments, teams, and more.
-              Everything you need to launch your SaaS business.
+            <p class="mt-6 text-lg leading-8">
+              {{ $t('home.hero.subtitle') }}
             </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-              <UButton size="lg" @click="$router.push('/register')"> Get started </UButton>
+              <UButton size="lg" @click="$router.push('/register')">
+                {{ $t('home.hero.getStarted') }}
+              </UButton>
               <UButton variant="outline" size="lg" @click="$router.push('/pricing')">
-                View pricing
+                {{ $t('home.hero.viewPricing') }}
               </UButton>
             </div>
           </div>
@@ -24,14 +27,14 @@
     </section>
 
     <!-- Features Section -->
-    <section class="bg-gray-50 py-24">
+    <section class="bg-gray-50000 py-24">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Everything you need to build a SaaS
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+            {{ $t('home.features.title') }}
           </h2>
-          <p class="mt-4 text-lg text-gray-600">
-            Pre-built components and features to accelerate your development
+          <p class="mt-4 text-lg">
+            {{ $t('home.features.subtitle') }}
           </p>
         </div>
 
@@ -42,11 +45,11 @@
             >
               <UIcon :name="feature.icon" class="h-6 w-6" />
             </div>
-            <h3 class="mt-6 text-lg font-medium text-gray-900">
-              {{ feature.name }}
+            <h3 class="mt-6 text-lg font-medium">
+              {{ $t(feature.name) }}
             </h3>
-            <p class="mt-2 text-base text-gray-500">
-              {{ feature.description }}
+            <p class="mt-2 text-base">
+              {{ $t(feature.description) }}
             </p>
           </div>
         </div>
@@ -59,13 +62,13 @@
         class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:flex lg:items-center lg:justify-between lg:px-8 lg:py-16"
       >
         <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          <span class="block">Ready to dive in?</span>
-          <span class="text-primary-200 block">Start your free trial today.</span>
+          <span class="block">{{ $t('home.cta.title') }}</span>
+          <span class="text-primary-200 block">{{ $t('home.cta.subtitle') }}</span>
         </h2>
         <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
           <div class="inline-flex rounded-md shadow">
             <UButton color="white" size="lg" @click="$router.push('/register')">
-              Get started
+              {{ $t('home.cta.getStarted') }}
             </UButton>
           </div>
         </div>
@@ -81,33 +84,33 @@ definePageMeta({
 
 const features = [
   {
-    name: 'Authentication',
-    description: 'Complete auth system with social logins, magic links, and 2FA support.',
+    name: 'home.features.authentication.name',
+    description: 'home.features.authentication.description',
     icon: 'i-heroicons-key',
   },
   {
-    name: 'Payments',
-    description: 'Stripe integration with subscriptions, billing portal, and webhooks.',
+    name: 'home.features.payments.name',
+    description: 'home.features.payments.description',
     icon: 'i-heroicons-credit-card',
   },
   {
-    name: 'Teams',
-    description: 'Multi-tenant architecture with team management and role-based access.',
+    name: 'home.features.teams.name',
+    description: 'home.features.teams.description',
     icon: 'i-heroicons-users',
   },
   {
-    name: 'Database',
-    description: 'Supabase backend with Prisma ORM and Row-Level Security.',
+    name: 'home.features.database.name',
+    description: 'home.features.database.description',
     icon: 'i-heroicons-server',
   },
   {
-    name: 'Admin Panel',
-    description: 'Super admin dashboard for user management and analytics.',
+    name: 'home.features.admin.name',
+    description: 'home.features.admin.description',
     icon: 'i-heroicons-chart-bar',
   },
   {
-    name: 'Modern Stack',
-    description: 'Built with Nuxt 3, Vue 3, TypeScript, and Tailwind CSS.',
+    name: 'home.features.stack.name',
+    description: 'home.features.stack.description',
     icon: 'i-heroicons-code-bracket',
   },
 ]

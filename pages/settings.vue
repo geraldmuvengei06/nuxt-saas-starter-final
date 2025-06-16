@@ -1,13 +1,15 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="bg-gray-50000 min-h-screen dark:bg-gray-900">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-3xl">
-        <div class="overflow-hidden rounded-lg bg-white shadow">
+        <div class="overflow-hidden rounded-lg bg-white shadow dark:bg-gray-800">
           <div class="px-4 py-5 sm:p-6">
             <div class="sm:flex sm:items-center">
               <div class="sm:flex-auto">
-                <h1 class="text-xl font-semibold text-gray-900">Account Settings</h1>
-                <p class="mt-2 text-sm text-gray-700">
+                <h1 class="text-xl font-semibold text-gray-900 dark:text-white">
+                  Account Settings
+                </h1>
+                <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
                   Manage your account information and preferences.
                 </p>
               </div>
@@ -15,7 +17,9 @@
 
             <!-- Profile Settings -->
             <div class="mt-8">
-              <h2 class="mb-4 text-lg font-medium text-gray-900">Profile Information</h2>
+              <h2 class="mb-4 text-lg font-medium text-gray-900 dark:text-white">
+                Profile Information
+              </h2>
 
               <form class="space-y-6" @submit.prevent="updateProfile">
                 <div>
@@ -26,7 +30,7 @@
 
                 <div>
                   <UFormGroup label="Email Address" name="email">
-                    <UInput v-model="form.email" type="email" disabled class="bg-gray-50" />
+                    <UInput v-model="form.email" type="email" disabled class="bg-gray-50000" />
                     <template #help>
                       <span class="text-sm text-gray-500">
                         Email cannot be changed. Contact support if you need to update it.

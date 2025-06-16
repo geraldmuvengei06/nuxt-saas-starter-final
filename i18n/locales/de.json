@@ -1,0 +1,209 @@
+{
+  "common": {
+    "loading": "Lädt...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "refresh": "Aktualisieren",
+    "success": "Erfolg",
+    "error": "Fehler",
+    "warning": "Warnung",
+    "info": "Information",
+    "or": "Oder"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "dashboard": "Dashboard",
+    "projects": "Projekte",
+    "teams": "Teams",
+    "billing": "Abrechnung",
+    "settings": "Einstellungen",
+    "admin": "Admin",
+    "pricing": "Preise",
+    "features": "Funktionen",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "register": "Registrieren"
+  },
+  "home": {
+    "hero": {
+      "title": "Bauen Sie Ihr SaaS schneller als je zuvor",
+      "subtitle": "Ein vollständiges Nuxt 3 SaaS-Starter-Kit mit Authentifizierung, Zahlungen, Teams und mehr. Alles was Sie brauchen, um Ihr SaaS-Geschäft zu starten.",
+      "getStarted": "Loslegen",
+      "viewPricing": "Preise ansehen"
+    },
+    "features": {
+      "title": "Alles was Sie brauchen, um ein SaaS zu erstellen",
+      "subtitle": "Vorgefertigte Komponenten und Funktionen zur Beschleunigung Ihrer Entwicklung",
+      "authentication": {
+        "name": "Authentifizierung",
+        "description": "Vollständiges Auth-System mit sozialen Logins, Magic Links und 2FA-Unterstützung."
+      },
+      "payments": {
+        "name": "Zahlungen",
+        "description": "Stripe-Integration mit Abonnements, Abrechnungsportal und Webhooks."
+      },
+      "teams": {
+        "name": "Teams",
+        "description": "Multi-Tenant-Architektur mit Team-Management und rollenbasiertem Zugriff."
+      },
+      "database": {
+        "name": "Datenbank",
+        "description": "Supabase-Backend mit Prisma ORM und Row-Level Security."
+      },
+      "admin": {
+        "name": "Admin-Panel",
+        "description": "Super-Admin-Dashboard für Benutzerverwaltung und Analysen."
+      },
+      "stack": {
+        "name": "Moderner Stack",
+        "description": "Erstellt mit Nuxt 3, Vue 3, TypeScript und Tailwind CSS."
+      }
+    },
+    "cta": {
+      "title": "Bereit einzutauchen?",
+      "subtitle": "Starten Sie heute Ihre kostenlose Testversion.",
+      "getStarted": "Loslegen"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Melden Sie sich in Ihr Konto an",
+      "createAccount": "neues Konto erstellen",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "rememberMe": "Angemeldet bleiben",
+      "forgotPassword": "Passwort vergessen?",
+      "signIn": "Anmelden",
+      "orContinueWith": "Oder fortfahren mit",
+      "google": "Google",
+      "github": "GitHub",
+      "sendMagicLink": "Magic Link senden",
+      "enterEmail": "Geben Sie Ihre E-Mail ein",
+      "enterPassword": "Geben Sie Ihr Passwort ein"
+    },
+    "register": {
+      "title": "Erstellen Sie Ihr Konto",
+      "haveAccount": "Haben Sie bereits ein Konto?",
+      "signIn": "anmelden",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "name": "Vollständiger Name",
+      "createAccount": "Konto erstellen",
+      "termsAndConditions": "Ich stimme den Geschäftsbedingungen zu",
+      "enterEmail": "Geben Sie Ihre E-Mail ein",
+      "enterPassword": "Geben Sie Ihr Passwort ein",
+      "confirmYourPassword": "Bestätigen Sie Ihr Passwort",
+      "enterName": "Geben Sie Ihren vollständigen Namen ein"
+    },
+    "messages": {
+      "loginSuccess": "Erfolgreich angemeldet!",
+      "loginError": "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten.",
+      "registerSuccess": "Konto erfolgreich erstellt! Bitte überprüfen Sie Ihre E-Mail.",
+      "registerError": "Konto-Erstellung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "magicLinkSent": "Magic Link gesendet! Überprüfen Sie Ihre E-Mail.",
+      "magicLinkError": "Magic Link konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+      "logoutSuccess": "Erfolgreich abgemeldet!",
+      "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Willkommen zurück",
+    "overview": "Übersicht",
+    "recentActivity": "Letzte Aktivitäten",
+    "quickActions": "Schnellaktionen",
+    "createProject": "Projekt erstellen",
+    "inviteTeamMember": "Team-Mitglied einladen",
+    "viewBilling": "Abrechnung anzeigen"
+  },
+  "projects": {
+    "title": "Projekte",
+    "createNew": "Neues Projekt erstellen",
+    "noProjects": "Keine Projekte gefunden",
+    "createFirst": "Erstellen Sie Ihr erstes Projekt, um zu beginnen",
+    "name": "Projektname",
+    "description": "Beschreibung",
+    "created": "Erstellt",
+    "updated": "Aktualisiert",
+    "actions": "Aktionen"
+  },
+  "teams": {
+    "title": "Teams",
+    "createNew": "Neues Team erstellen",
+    "joinTeam": "Team beitreten",
+    "members": "Mitglieder",
+    "invitations": "Einladungen",
+    "settings": "Team-Einstellungen",
+    "name": "Team-Name",
+    "role": "Rolle",
+    "owner": "Besitzer",
+    "admin": "Administrator",
+    "member": "Mitglied",
+    "invited": "Eingeladen",
+    "active": "Aktiv"
+  },
+  "billing": {
+    "title": "Abrechnung und Abonnement",
+    "currentPlan": "Aktueller Plan",
+    "usage": "Nutzung",
+    "invoices": "Rechnungen",
+    "paymentMethods": "Zahlungsmethoden",
+    "upgradePlan": "Plan upgraden",
+    "manageBilling": "Abrechnung verwalten",
+    "cancelSubscription": "Abonnement kündigen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "profile": "Profil",
+    "security": "Sicherheit",
+    "notifications": "Benachrichtigungen",
+    "preferences": "Voreinstellungen",
+    "account": "Konto"
+  },
+  "admin": {
+    "title": "Admin-Dashboard",
+    "users": "Benutzer",
+    "projects": "Projekte",
+    "teams": "Teams",
+    "analytics": "Analysen",
+    "feedback": "Feedback",
+    "activity": "Aktivitätsprotokolle"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System",
+    "selectTheme": "Thema auswählen"
+  },
+  "language": {
+    "selectLanguage": "Sprache auswählen"
+  },
+  "test": {
+    "title": "i18n und Theme Tests",
+    "themeSection": "Theme Tests",
+    "languageSection": "Sprache Tests",
+    "currentTheme": "Aktuelles Theme",
+    "currentLanguage": "Aktuelle Sprache",
+    "sampleContent": "Beispiel Übersetzter Inhalt",
+    "description": "Diese Seite demonstriert Internationalisierung und Theme-Wechsel-Funktionalität. Versuchen Sie, die Sprache und das Theme mit den Schaltern oben zu ändern.",
+    "navigation": "Navigationselemente"
+  },
+  "errors": {
+    "pageNotFound": "Seite nicht gefunden",
+    "serverError": "Server-Fehler",
+    "unauthorizedAccess": "Unbefugter Zugriff",
+    "genericError": "Etwas ist schief gelaufen",
+    "tryAgain": "Erneut versuchen"
+  }
+}

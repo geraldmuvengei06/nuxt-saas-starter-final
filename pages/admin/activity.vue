@@ -86,7 +86,7 @@
                   View Details
                 </summary>
                 <pre
-                  class="mt-1 rounded bg-gray-50 p-2 text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                  class="bg-gray-50000 mt-1 rounded p-2 text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-400"
                   >{{ JSON.stringify(row.metadata, null, 2) }}</pre
                 >
               </details>

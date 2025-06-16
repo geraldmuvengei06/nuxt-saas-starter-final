@@ -1,9 +1,27 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/supabase', '@nuxt/ui', '@pinia/nuxt', '@nuxt/eslint'],
+  modules: [
+    '@nuxtjs/supabase',
+    '@nuxt/ui',
+    '@pinia/nuxt',
+    '@nuxt/eslint',
+    '@nuxtjs/i18n',
+    '@nuxtjs/color-mode',
+  ],
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
+
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storageKey: 'nuxt-color-mode',
+  },
 
   runtimeConfig: {
     // Private keys (only available on server-side)
@@ -37,6 +55,54 @@ export default defineNuxtConfig({
     },
   },
 
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        language: 'en-US',
+        name: 'English',
+        file: 'en.json',
+        flag: '🇺🇸',
+      },
+      {
+        code: 'es',
+        language: 'es-ES',
+        name: 'Español',
+        file: 'es.json',
+        flag: '🇪🇸',
+      },
+      {
+        code: 'fr',
+        language: 'fr-FR',
+        name: 'Français',
+        file: 'fr.json',
+        flag: '🇫🇷',
+      },
+      {
+        code: 'de',
+        language: 'de-DE',
+        name: 'Deutsch',
+        file: 'de.json',
+        flag: '🇩🇪',
+      },
+    ],
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    lazy: true,
+    langDir: 'locales/',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false,
+      fallbackLocale: 'en',
+    },
+    compilation: {
+      strictMessage: false,
+      escapeHtml: false,
+    },
+  },
+
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_ANON_KEY,
@@ -50,15 +116,5 @@ export default defineNuxtConfig({
   tailwindcss: {
     configPath: '~/tailwind.config.js',
     cssPath: '~/assets/css/main.css',
-    config: {
-      content: [
-        './components/**/*.{js,vue,ts}',
-        './layouts/**/*.vue',
-        './pages/**/*.vue',
-        './plugins/**/*.{js,ts}',
-        './app.vue',
-        './error.vue',
-      ],
-    },
   },
 })
