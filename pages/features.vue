@@ -129,15 +129,22 @@ const features = [
   },
   {
     name: 'Team Management',
-    description: 'Multi-tenant architecture with team invitations and role-based access.',
+    description: 'Complete team system with member management, roles, and permissions.',
     icon: 'i-heroicons-users',
-    status: 'coming-soon',
+    status: 'available',
   },
   {
     name: 'Admin Dashboard',
-    description: 'Super admin panel for user management, analytics, and system monitoring.',
+    description:
+      'Comprehensive admin panel for user, team, and project management with activity logging.',
     icon: 'i-heroicons-chart-bar',
-    status: 'coming-soon',
+    status: 'available',
+  },
+  {
+    name: 'Project Management',
+    description: 'Full project lifecycle management with team assignment and ownership controls.',
+    icon: 'i-heroicons-folder',
+    status: 'available',
   },
   {
     name: 'API Documentation',
