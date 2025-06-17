@@ -7,13 +7,6 @@ export const adminRepository = {
       skip: offset,
       include: {
         subscription: true,
-        projects: {
-          select: {
-            id: true,
-            name: true,
-            createdAt: true,
-          },
-        },
         teamMembers: {
           include: {
             team: {
@@ -26,7 +19,6 @@ export const adminRepository = {
         },
         _count: {
           select: {
-            projects: true,
             teamMembers: true,
           },
         },
@@ -45,7 +37,8 @@ export const adminRepository = {
   },
 
   async getProjectsCount() {
-    return await prisma.project.count()
+    // Projects no longer exist
+    return 0
   },
 
   async getSubscriptionsCount() {
@@ -57,10 +50,9 @@ export const adminRepository = {
   },
 
   async getSystemStats() {
-    const [usersCount, teamsCount, projectsCount, subscriptionsCount] = await Promise.all([
+    const [usersCount, teamsCount, subscriptionsCount] = await Promise.all([
       prisma.profile.count(),
       prisma.team.count(),
-      prisma.project.count(),
       prisma.subscription.count({
         where: {
           status: 'active',
@@ -71,7 +63,7 @@ export const adminRepository = {
     return {
       usersCount,
       teamsCount,
-      projectsCount,
+      projectsCount: 0, // Projects removed
       subscriptionsCount,
     }
   },
@@ -93,43 +85,9 @@ export const adminRepository = {
             },
           },
         },
-        projects: {
-          select: {
-            id: true,
-            name: true,
-            createdAt: true,
-          },
-        },
         _count: {
           select: {
             members: true,
-            projects: true,
-          },
-        },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    })
-  },
-
-  async getAllProjects(limit = 50, offset = 0) {
-    return await prisma.project.findMany({
-      take: limit,
-      skip: offset,
-      include: {
-        owner: {
-          select: {
-            id: true,
-            email: true,
-            fullName: true,
-            avatarUrl: true,
-          },
-        },
-        team: {
-          select: {
-            id: true,
-            name: true,
           },
         },
       },
@@ -172,11 +130,6 @@ export const adminRepository = {
     })
   },
 
-  async deleteProject(projectId: string) {
-    await prisma.project.delete({
-      where: { id: projectId },
-    })
-  },
   async updateUserRole(_userId: string, _role: 'user' | 'admin') {
     // Note: You'll need to add a role field to the Profile model
     // For now, this is a placeholder

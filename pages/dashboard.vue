@@ -18,25 +18,7 @@
 
             <!-- Stats -->
             <div class="mt-8">
-              <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                <div class="overflow-hidden rounded-lg bg-white shadow">
-                  <div class="p-5">
-                    <div class="flex items-center">
-                      <div class="flex-shrink-0">
-                        <UIcon name="i-heroicons-folder" class="h-6 w-6 text-gray-400" />
-                      </div>
-                      <div class="ml-5 w-0 flex-1">
-                        <dl>
-                          <dt class="truncate text-sm font-medium text-gray-500">Total Projects</dt>
-                          <dd class="text-lg font-medium text-gray-900">
-                            {{ stats.projects }}
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+              <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div class="overflow-hidden rounded-lg bg-white shadow">
                   <div class="p-5">
                     <div class="flex items-center">
@@ -75,36 +57,36 @@
               </div>
             </div>
 
-            <!-- Recent Projects -->
+            <!-- Quick Actions -->
             <div class="mt-8">
-              <h2 class="mb-4 text-lg font-medium text-gray-900">Recent Projects</h2>
-              <div v-if="projects.length === 0" class="py-12 text-center">
-                <UIcon name="i-heroicons-folder-plus" class="mx-auto h-12 w-12 text-gray-400" />
-                <h3 class="mt-2 text-sm font-medium text-gray-900">No projects</h3>
-                <p class="mt-1 text-sm text-gray-500">Get started by creating a new project.</p>
-                <div class="mt-6">
-                  <UButton @click="$router.push('/projects/new')">
-                    <UIcon name="i-heroicons-plus" class="mr-2 h-4 w-4" />
-                    New Project
-                  </UButton>
+              <h2 class="mb-4 text-lg font-medium text-gray-900">Quick Actions</h2>
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div class="rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                      <UIcon name="i-heroicons-users" class="h-6 w-6 text-gray-400" />
+                    </div>
+                    <div class="ml-3">
+                      <h3 class="text-sm font-medium text-gray-900">Manage Teams</h3>
+                      <p class="text-sm text-gray-500">Create and manage your teams</p>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <UButton size="sm" @click="$router.push('/teams')"> View Teams </UButton>
+                  </div>
                 </div>
-              </div>
-              <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div
-                  v-for="project in projects"
-                  :key="project.id"
-                  class="focus-within:ring-primary-500 relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-offset-2 hover:border-gray-400"
-                >
-                  <div class="min-w-0 flex-1">
-                    <NuxtLink :to="`/projects/${project.id}`" class="focus:outline-none">
-                      <span class="absolute inset-0" aria-hidden="true" />
-                      <p class="text-sm font-medium text-gray-900">
-                        {{ project.name }}
-                      </p>
-                      <p class="truncate text-sm text-gray-500">
-                        {{ project.description || 'No description' }}
-                      </p>
-                    </NuxtLink>
+                <div class="rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                      <UIcon name="i-heroicons-cog-6-tooth" class="h-6 w-6 text-gray-400" />
+                    </div>
+                    <div class="ml-3">
+                      <h3 class="text-sm font-medium text-gray-900">Account Settings</h3>
+                      <p class="text-sm text-gray-500">Manage your account and billing</p>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <UButton size="sm" @click="$router.push('/settings')"> Settings </UButton>
                   </div>
                 </div>
               </div>
@@ -126,34 +108,14 @@ const user = useSupabaseUser()
 const supabase = useSupabaseClient()
 
 const stats = ref({
-  projects: 0,
   teamMembers: 0,
 })
 
 const subscription = ref(null)
-const projects = ref([])
 
 onMounted(async () => {
   // Fetch user stats
   if (user.value) {
-    // Get projects count
-    const { count: projectsCount } = await supabase
-      .from('projects')
-      .select('*', { count: 'exact', head: true })
-      .eq('owner_id', user.value.id)
-
-    stats.value.projects = projectsCount || 0
-
-    // Get recent projects
-    const { data: projectsData } = await supabase
-      .from('projects')
-      .select('*')
-      .eq('owner_id', user.value.id)
-      .order('created_at', { ascending: false })
-      .limit(4)
-
-    projects.value = projectsData || []
-
     // Get subscription
     const { data: subscriptionData } = await supabase
       .from('subscriptions')

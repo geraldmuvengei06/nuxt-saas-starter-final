@@ -42,10 +42,6 @@
               <Icon name="i-heroicons-users" class="h-4 w-4" />
               <span>{{ team._count?.members || 0 }} members</span>
             </div>
-            <div class="flex items-center space-x-1">
-              <Icon name="i-heroicons-folder" class="h-4 w-4" />
-              <span>{{ team._count?.projects || 0 }} projects</span>
-            </div>
             <UBadge :label="userRole" :color="getRoleColor(userRole)" variant="subtle" />
           </div>
         </div>
@@ -110,58 +106,6 @@
                     <UButton icon="i-heroicons-ellipsis-vertical" variant="ghost" size="sm" />
                   </UDropdown>
                 </div>
-              </UCard>
-            </div>
-          </div>
-        </template>
-
-        <!-- Projects Tab -->
-        <template #projects>
-          <div class="space-y-4">
-            <div v-if="!team.projects || team.projects.length === 0" class="py-12 text-center">
-              <div class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500">
-                <Icon name="i-heroicons-folder" class="h-12 w-12" />
-              </div>
-              <h3 class="mt-2 text-sm font-semibold text-gray-900 dark:text-white">No projects</h3>
-              <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                This team doesn't have any projects yet.
-              </p>
-              <div class="mt-6">
-                <UButton icon="i-heroicons-plus" @click="navigateTo('/projects/new')">
-                  Create Project
-                </UButton>
-              </div>
-            </div>
-            <div v-else class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <UCard
-                v-for="project in team.projects"
-                :key="project.id"
-                class="cursor-pointer transition-shadow duration-200 hover:shadow-lg"
-                @click="navigateTo(`/projects/${project.id}`)"
-              >
-                <template #header>
-                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                    {{ project.name }}
-                  </h3>
-                </template>
-                <p v-if="project.description" class="text-sm text-gray-600 dark:text-gray-300">
-                  {{ project.description }}
-                </p>
-                <template #footer>
-                  <div
-                    class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400"
-                  >
-                    <span>Created {{ formatDate(project.createdAt) }}</span>
-                    <UButton
-                      size="xs"
-                      variant="ghost"
-                      icon="i-heroicons-arrow-right"
-                      @click.stop="navigateTo(`/projects/${project.id}`)"
-                    >
-                      View
-                    </UButton>
-                  </div>
-                </template>
               </UCard>
             </div>
           </div>
@@ -258,7 +202,7 @@
             >? This action cannot be undone.
           </p>
           <p class="text-sm text-red-600 dark:text-red-400">
-            All team projects and data will be permanently deleted.
+            All team data will be permanently deleted.
           </p>
 
           <div class="flex justify-end space-x-3">
@@ -336,10 +280,7 @@ const canManageMembers = computed(() => {
   return ['owner', 'admin'].includes(userRole.value)
 })
 
-const tabs = [
-  { key: 'members', label: 'Members', slot: 'members' },
-  { key: 'projects', label: 'Projects', slot: 'projects' },
-]
+const tabs = [{ key: 'members', label: 'Members', slot: 'members' }]
 
 const roleOptions = [
   { label: 'Member', value: 'member' },

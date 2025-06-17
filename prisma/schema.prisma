@@ -19,7 +19,6 @@ model Profile {
     createdAt    DateTime      @default(now()) @map("created_at")
     updatedAt    DateTime      @updatedAt @map("updated_at") // Relations
     subscription Subscription?
-    projects     Project[]
     teamMembers  TeamMember[]
     feedback     Feedback[]
     activityLogs ActivityLog[]
@@ -46,22 +45,6 @@ model Subscription {
     @@map("subscriptions")
 }
 
-model Project {
-    id          String   @id @default(cuid())
-    name        String
-    description String?
-    ownerId     String   @map("owner_id") @db.Uuid
-    teamId      String?  @map("team_id")
-    createdAt   DateTime @default(now()) @map("created_at")
-    updatedAt   DateTime @updatedAt @map("updated_at")
-
-    // Relations
-    owner Profile @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-    team  Team?   @relation(fields: [teamId], references: [id], onDelete: SetNull)
-
-    @@map("projects")
-}
-
 model Team {
     id          String   @id @default(cuid())
     name        String
@@ -70,8 +53,7 @@ model Team {
     updatedAt   DateTime @updatedAt @map("updated_at")
 
     // Relations
-    members  TeamMember[]
-    projects Project[]
+    members TeamMember[]
 
     @@map("teams")
 }

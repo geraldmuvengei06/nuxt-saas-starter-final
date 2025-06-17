@@ -39,23 +39,6 @@ export const adminService = {
       },
     }
   },
-  async getAllProjects(page: number = 1, limit: number = 50) {
-    const offset = (page - 1) * limit
-    const [projects, totalCount] = await Promise.all([
-      adminRepository.getAllProjects(limit, offset),
-      adminRepository.getProjectsCount(),
-    ])
-
-    return {
-      projects,
-      pagination: {
-        page,
-        limit,
-        totalCount,
-        totalPages: Math.ceil(totalCount / limit),
-      },
-    }
-  },
   async getAllSubscriptions(page: number = 1, limit: number = 50) {
     const offset = (page - 1) * limit
     const [subscriptions, totalCount] = await Promise.all([
@@ -103,17 +86,6 @@ export const adminService = {
     return await adminRepository.deleteTeam(teamId)
   },
 
-  async deleteProject(projectId: string) {
-    // Log the activity
-    await adminRepository.createActivityLog({
-      action: 'project_deleted',
-      entityType: 'project',
-      entityId: projectId,
-      description: `Project ${projectId} was deleted`,
-    })
-
-    return await adminRepository.deleteProject(projectId)
-  },
   async getFeedback(page: number = 1, limit: number = 50) {
     const offset = (page - 1) * limit
     const [feedback, totalCount] = await Promise.all([

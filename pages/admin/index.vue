@@ -12,7 +12,7 @@
       <USkeleton v-for="i in 4" :key="i" class="h-24" />
     </div>
 
-    <div v-else-if="stats" class="mb-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <div v-else-if="stats" class="mb-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <UCard>
         <div class="flex items-center">
           <div class="flex-shrink-0">
@@ -36,20 +36,6 @@
             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Teams</p>
             <p class="text-2xl font-semibold text-gray-900 dark:text-white">
               {{ stats.teamsCount }}
-            </p>
-          </div>
-        </div>
-      </UCard>
-
-      <UCard>
-        <div class="flex items-center">
-          <div class="flex-shrink-0">
-            <Icon name="i-heroicons-folder" class="h-8 w-8 text-purple-500" />
-          </div>
-          <div class="ml-4">
-            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Projects</p>
-            <p class="text-2xl font-semibold text-gray-900 dark:text-white">
-              {{ stats.projectsCount }}
             </p>
           </div>
         </div>
@@ -92,19 +78,6 @@
           <div>
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Manage Teams</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400">View and manage teams</p>
-          </div>
-          <Icon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
-        </div>
-      </UCard>
-
-      <UCard
-        class="cursor-pointer transition-shadow hover:shadow-lg"
-        @click="navigateTo('/admin/projects')"
-      >
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Manage Projects</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400">View and manage projects</p>
           </div>
           <Icon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
         </div>
@@ -188,7 +161,6 @@ const { data: stats, pending } = await useFetch('/api/admin/stats', {
   default: () => ({
     usersCount: 0,
     teamsCount: 0,
-    projectsCount: 0,
     subscriptionsCount: 0,
   }),
 })
