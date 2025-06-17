@@ -20,8 +20,7 @@ enum UserRole {
 }
 
 model Profile {
-    id           String        @id @db.Uuid // References auth.users.id
-    email        String        @unique
+    id           String        @id @db.Uuid // This directly references auth.users(id)    email        String        @unique
     fullName     String?       @map("full_name")
     avatarUrl    String?       @map("avatar_url")
     role         UserRole      @default(USER)

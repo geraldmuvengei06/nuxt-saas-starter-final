@@ -6,6 +6,8 @@ export default defineEventHandler(async event => {
 
     const profile = await getUserProfile(event)
 
+
+
     if (!profile) {
       throw createError({
         statusCode: 404,

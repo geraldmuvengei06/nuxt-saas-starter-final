@@ -153,6 +153,8 @@ const { data: userProfile } = await useFetch('/api/auth/profile', {
   server: false,
 })
 
+console.log('userProfile', userProfile)
+
 // Redirect if not admin
 if (!userProfile.value || !['ADMIN', 'SUPER_ADMIN'].includes((userProfile.value as any).role)) {
   throw createError({

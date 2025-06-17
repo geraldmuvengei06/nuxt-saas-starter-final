@@ -38,6 +38,9 @@ export async function getUserProfile(event: H3Event) {
       return null
     }
 
+    console.log("profile", profile);
+
+
     return profile
   } catch (error) {
     console.error('Error in getUserProfile:', error)

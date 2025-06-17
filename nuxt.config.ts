@@ -109,7 +109,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      exclude: ['/', '/register', '/pricing', '/about', '/contact', '/features'], // Exclude marketing/public pages
+      exclude: ['/', '/register', '/forgot-password', '/reset-password', 'confirm', '/pricing', '/about', '/contact', '/features'], // Exclude marketing/public pages
     },
   },
 
