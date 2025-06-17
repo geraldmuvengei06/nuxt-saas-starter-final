@@ -122,18 +122,18 @@
           <div>
             <p class="text-sm font-medium text-gray-900 dark:text-white">Admin Dashboard</p>
             <p class="text-xs text-gray-500 dark:text-gray-400">
-              This is a demo admin dashboard. In production, implement proper role-based access
-              control.
+              Welcome to the admin dashboard. Access is controlled by user roles.
             </p>
           </div>
         </div>
 
         <div class="bg-gray-50000 flex items-center space-x-3 rounded-lg p-3 dark:bg-gray-800">
-          <Icon name="i-heroicons-exclamation-triangle" class="h-5 w-5 text-amber-500" />
+          <Icon name="i-heroicons-shield-check" class="h-5 w-5 text-green-500" />
           <div>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">Security Notice</p>
+            <p class="text-sm font-medium text-gray-900 dark:text-white">Role-Based Access</p>
             <p class="text-xs text-gray-500 dark:text-gray-400">
-              Current admin access is for demo purposes only. Implement proper authentication.
+              You have admin privileges. Only users with ADMIN or SUPER_ADMIN roles can access this
+              area.
             </p>
           </div>
         </div>
@@ -148,12 +148,17 @@ definePageMeta({
   layout: 'dashboard',
 })
 
-const user = useSupabaseUser()
+// Check user role from API
+const { data: userProfile } = await useFetch('/api/auth/profile', {
+  server: false,
+})
 
-// Check if user should have admin access (demo purposes)
-if (!user.value?.email?.includes('admin')) {
-  // In production, implement proper role checking
-  // For demo, we'll allow access but show a warning
+// Redirect if not admin
+if (!userProfile.value || !['ADMIN', 'SUPER_ADMIN'].includes((userProfile.value as any).role)) {
+  throw createError({
+    statusCode: 403,
+    statusMessage: 'Admin access required',
+  })
 }
 
 // Fetch admin stats

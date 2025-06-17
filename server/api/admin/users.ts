@@ -1,23 +1,16 @@
 import { adminService } from '~/server/services/adminService'
-import { serverSupabaseUser } from '#supabase/server'
+import { requireAdmin, getCurrentUser } from '~/server/utils/auth'
 
 export default defineEventHandler(async event => {
   try {
-    const user = await serverSupabaseUser(event)
+    // Use the new role-based authentication
+    await requireAdmin(event)
+    const user = await getCurrentUser(event)
 
     if (!user) {
       throw createError({
         statusCode: 401,
         statusMessage: 'Authentication required',
-      })
-    }
-
-    // Check if user is admin (for demo purposes, we'll allow all authenticated users)
-    const isAdmin = await adminService.isAdmin(user.id)
-    if (!isAdmin && !user.email?.includes('admin')) {
-      throw createError({
-        statusCode: 403,
-        statusMessage: 'Admin access required',
       })
     }
 

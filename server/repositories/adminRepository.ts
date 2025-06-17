@@ -130,12 +130,6 @@ export const adminRepository = {
     })
   },
 
-  async updateUserRole(_userId: string, _role: 'user' | 'admin') {
-    // Note: You'll need to add a role field to the Profile model
-    // For now, this is a placeholder
-    throw new Error('User roles not implemented yet. Add role field to Profile model.')
-  },
-
   async impersonateUser(_adminId: string, _userId: string) {
     // Note: This would require additional implementation for session management
     // For now, this is a placeholder
@@ -212,6 +206,28 @@ export const adminRepository = {
     return await prisma.feedback.update({
       where: { id: feedbackId },
       data: { status },
+    })
+  },
+
+  async getUserProfile(userId: string) {
+    return await prisma.profile.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        fullName: true,
+        avatarUrl: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    })
+  },
+
+  async updateUserRole(userId: string, role: 'USER' | 'ADMIN' | 'SUPER_ADMIN') {
+    return await prisma.profile.update({
+      where: { id: userId },
+      data: { role },
     })
   },
 }

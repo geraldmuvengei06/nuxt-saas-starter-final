@@ -1,7 +1,3 @@
-Here's a comprehensive prompt you can use with GitHub Copilot Chat:
-
----
-
 **🎨 MAJOR UPGRADE: Nuxt UI v3.1.3 + Tailwind 4 + Global Theming System**
 
 I need to upgrade my Nuxt 3 SaaS Starter Kit from `@nuxt/ui": "^2.22.0"` to `@nuxt/ui": "^3.1.3"` with Tailwind 4, and implement a cohesive global theming system. This is a comprehensive upgrade that affects the entire UI architecture.

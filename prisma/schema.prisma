@@ -11,11 +11,20 @@ datasource db {
     directUrl = env("DIRECT_URL")
 }
 
+enum UserRole {
+    USER
+    ADMIN
+    SUPER_ADMIN
+
+    @@map("user_role")
+}
+
 model Profile {
     id           String        @id @db.Uuid // References auth.users.id
     email        String        @unique
     fullName     String?       @map("full_name")
     avatarUrl    String?       @map("avatar_url")
+    role         UserRole      @default(USER)
     createdAt    DateTime      @default(now()) @map("created_at")
     updatedAt    DateTime      @updatedAt @map("updated_at") // Relations
     subscription Subscription?

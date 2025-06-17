@@ -48,8 +48,13 @@
               </p>
               <div class="mt-1 flex items-center space-x-4">
                 <span class="text-xs text-gray-400"> Joined {{ formatDate(user.createdAt) }} </span>
-                <span class="text-xs text-gray-400"> {{ user._count.projects }} projects </span>
                 <span class="text-xs text-gray-400"> {{ user._count.teamMembers }} teams </span>
+                <RoleSelector
+                  :user-id="user.id"
+                  :current-role="user.role"
+                  :disabled="user.id === currentUserId"
+                  @role-changed="handleRoleChanged"
+                />
               </div>
             </div>
           </div>
@@ -145,6 +150,18 @@ definePageMeta({
   layout: 'dashboard',
 })
 
+// Check admin access
+const { data: userProfile } = await useFetch('/api/auth/profile', {
+  server: false,
+})
+
+if (!userProfile.value || !['ADMIN', 'SUPER_ADMIN'].includes((userProfile.value as any).role)) {
+  throw createError({
+    statusCode: 403,
+    statusMessage: 'Admin access required',
+  })
+}
+
 const toast = useToast()
 const route = useRoute()
 
@@ -165,8 +182,17 @@ const {
 })) as { data: Ref<any>; pending: Ref<boolean>; refresh: () => Promise<void> }
 
 const users = computed(() => (usersData.value?.users as any[]) || [])
+const currentUserId = computed(() => (userProfile.value as any)?.id)
 
 // Methods
+const handleRoleChanged = (userId: string, newRole: string) => {
+  // Update the user in the local data
+  const userIndex = users.value.findIndex(u => u.id === userId)
+  if (userIndex !== -1) {
+    users.value[userIndex].role = newRole
+  }
+}
+
 const loadPage = async (page: number) => {
   currentPage.value = page
   await navigateTo({ query: { page } })

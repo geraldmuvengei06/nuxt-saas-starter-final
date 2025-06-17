@@ -1,4 +1,5 @@
 import { adminRepository } from '~/server/repositories/adminRepository'
+// import { serverSupabaseClient } from '#supabase/server'
 
 export const adminService = {
   async getSystemStats() {
@@ -130,18 +131,44 @@ export const adminService = {
       },
     }
   }, // Helper method to check if user is admin
+  async isAdmin(userId: string): Promise<boolean> {
+    try {
+      const profile = await adminRepository.getUserProfile(userId)
+      return profile?.role === 'ADMIN' || profile?.role === 'SUPER_ADMIN'
+    } catch (error) {
+      console.error('Error checking admin status:', error)
+      return false
+    }
+  },
 
-  async isAdmin(_userId: string): Promise<boolean> {
-    // For now, we'll use a simple email-based check
-    // In production, you should add a role field to the Profile model
+  // Helper method to check if user is super admin
+  async isSuperAdmin(userId: string): Promise<boolean> {
+    try {
+      const profile = await adminRepository.getUserProfile(userId)
+      return profile?.role === 'SUPER_ADMIN'
+    } catch (error) {
+      console.error('Error checking super admin status:', error)
+      return false
+    }
+  },
 
-    // You can implement admin checking logic here
-    // For demo purposes, we'll assume certain email domains or hardcoded emails are admins
+  // Update user role (only super admins can do this)
+  async updateUserRole(userId: string, newRole: 'USER' | 'ADMIN' | 'SUPER_ADMIN', adminId: string) {
+    // Prevent admin from changing their own role
+    if (userId === adminId) {
+      throw new Error('Cannot change your own role')
+    }
 
-    // Example: Check if user email ends with your company domain
-    // const profile = await prisma.profile.findUnique({ where: { id: userId } })
-    // return profile?.email?.endsWith('@yourcompany.com') || false
+    // Log the activity
+    await adminRepository.createActivityLog({
+      userId: adminId,
+      action: 'user_role_updated',
+      entityType: 'user',
+      entityId: userId,
+      description: `User role updated to ${newRole}`,
+      metadata: { newRole },
+    })
 
-    return false // For now, return false until proper role system is implemented
+    return await adminRepository.updateUserRole(userId, newRole)
   },
 }
