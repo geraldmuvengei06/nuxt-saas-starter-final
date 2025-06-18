@@ -11,6 +11,7 @@
     <template #item="{ item }">
       <div class="flex items-center gap-2">
         <UIcon :name="item.icon" class="h-4 w-4" />
+
         <span>{{ item.label }}</span>
         <UIcon
           v-if="item.key === colorMode.preference"
