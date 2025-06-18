@@ -1,12 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxtjs/supabase',
-    '@nuxt/ui',
-    '@pinia/nuxt',
-    '@nuxt/eslint',
-    '@nuxtjs/i18n',
-  ],
+  modules: ['@nuxtjs/supabase', '@nuxt/ui', '@pinia/nuxt', '@nuxt/eslint', '@nuxtjs/i18n'],
   devtools: { enabled: true },
 
   // Nuxt UI v3 handles CSS automatically
@@ -15,8 +9,8 @@ export default defineNuxtConfig({
   // Nuxt UI v3 configuration
   ui: {
     colorMode: {
-      preference: 'system'
-    }
+      preference: 'system',
+    },
   },
 
   runtimeConfig: {
@@ -43,11 +37,7 @@ export default defineNuxtConfig({
 
   eslint: {
     config: {
-      stylistic: {
-        indent: 2,
-        semi: false,
-        quotes: 'single',
-      },
+      stylistic: true,
     },
   },
 
@@ -105,7 +95,21 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      exclude: ['/', '/en', '/es', '/de', '/fr', '/register', '/forgot-password', '/reset-password', 'confirm', '/pricing', '/about', '/contact', '/features'], // Exclude marketing/public pages
+      exclude: [
+        '/',
+        '/en',
+        '/es',
+        '/de',
+        '/fr',
+        '/register',
+        '/forgot-password',
+        '/reset-password',
+        'confirm',
+        '/pricing',
+        '/about',
+        '/contact',
+        '/features',
+      ], // Exclude marketing/public pages
     },
   },
 
