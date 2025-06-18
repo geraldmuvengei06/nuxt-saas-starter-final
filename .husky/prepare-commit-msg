@@ -1,0 +1,13 @@
+# #!/usr/bin/env sh
+# . "$(dirname -- "$0")/_/husky.sh"
+
+# If this is not an interactive terminal (e.g. in CI), skip
+[ -t 1 ] || exit 0
+
+# If commit message is already set (e.g. via -m or -F), skip
+if [ -z "$COMMIT_MSG_FILE" ] || [ -s "$COMMIT_MSG_FILE" ]; then
+    exit 0
+fi
+
+# Use npx explicitly for Windows compatibility
+exec </dev/tty && npx commitizen --hook || true

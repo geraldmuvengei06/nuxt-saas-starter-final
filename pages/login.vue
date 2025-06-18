@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray-50000 flex min-h-screen items-center justify-center px-4 py-12 dark:bg-gray-800 sm:px-6 lg:px-8"
+    class="bg-gray-50000 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8 dark:bg-gray-800"
   >
     <div class="w-full max-w-md space-y-8">
       <div>
