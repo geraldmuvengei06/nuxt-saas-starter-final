@@ -10,7 +10,7 @@
     <!-- Error State -->
     <div v-else-if="error" class="py-12 text-center">
       <div class="mx-auto h-12 w-12 text-red-400">
-        <Icon name="i-heroicons-exclamation-triangle" class="h-12 w-12" />
+        <UIcon name="i-heroicons-exclamation-triangle" class="h-12 w-12" />
       </div>
       <h3 class="mt-2 text-sm font-semibold text-gray-900 dark:text-white">Error loading team</h3>
       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Failed to load team details</p>
@@ -39,7 +39,7 @@
           </p>
           <div class="mt-2 flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
             <div class="flex items-center space-x-1">
-              <Icon name="i-heroicons-users" class="h-4 w-4" />
+              <UIcon name="i-heroicons-users" class="h-4 w-4" />
               <span>{{ team._count?.members || 0 }} members</span>
             </div>
             <UBadge :label="userRole" :color="getRoleColor(userRole)" variant="subtle" />

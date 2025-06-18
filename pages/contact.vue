@@ -56,7 +56,7 @@
               </div>
 
               <div>
-                <UButton type="submit" block :loading="loading" :disabled="loading">
+                <UButton type="submit" class="w-full" :loading="loading" :disabled="loading">
                   Send Message
                 </UButton>
               </div>

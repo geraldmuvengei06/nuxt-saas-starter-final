@@ -41,7 +41,7 @@
         <div class="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div v-for="feature in features" :key="feature.name" class="text-center">
             <div
-              class="bg-primary-500 mx-auto flex h-12 w-12 items-center justify-center rounded-md text-white"
+              class="bg-primary mx-auto flex h-12 w-12 items-center justify-center rounded-md text-white"
             >
               <UIcon :name="feature.icon" class="h-6 w-6" />
             </div>
@@ -57,13 +57,13 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="bg-primary-600">
+    <section class="bg-primary">
       <div
         class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:flex lg:items-center lg:justify-between lg:px-8 lg:py-16"
       >
         <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
           <span class="block">{{ $t('home.cta.title') }}</span>
-          <span class="text-primary-200 block">{{ $t('home.cta.subtitle') }}</span>
+          <span class="text-primary/20 block">{{ $t('home.cta.subtitle') }}</span>
         </h2>
         <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
           <div class="inline-flex rounded-md shadow">

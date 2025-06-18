@@ -9,7 +9,7 @@
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           {{ $t('common.or') }}
-          <NuxtLink to="/login" class="text-primary-600 hover:text-primary-500 font-medium">
+          <NuxtLink to="/login" class="text-primary hover:text-primary/80 font-medium">
             {{ $t('auth.register.signIn') }}
           </NuxtLink>
         </p>
@@ -74,10 +74,9 @@
 
           <UButton
             type="submit"
-            block
+            class="w-full"
             :loading="loading"
             :disabled="loading || !isFormValid"
-            class="w-full"
           >
             Create Account
           </UButton>

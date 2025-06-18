@@ -11,7 +11,7 @@
           <button
             type="button"
             class="focus:ring-primary-500 relative w-1/2 whitespace-nowrap rounded-md border-gray-200 bg-white py-2 text-sm font-medium text-gray-900 shadow-sm focus:z-10 focus:outline-none focus:ring-2 sm:w-auto sm:px-8"
-            :class="{ 'bg-primary-50 border-primary-200 text-primary-700': !isYearly }"
+            :class="{ 'bg-primary/5 border-primary/20 text-primary': !isYearly }"
             @click="isYearly = false"
           >
             Monthly billing
@@ -19,7 +19,7 @@
           <button
             type="button"
             class="focus:ring-primary-500 relative ml-0.5 w-1/2 whitespace-nowrap rounded-md border border-transparent py-2 text-sm font-medium text-gray-700 focus:z-10 focus:outline-none focus:ring-2 sm:w-auto sm:px-8"
-            :class="{ 'bg-primary-50 border-primary-200 text-primary-700': isYearly }"
+            :class="{ 'bg-primary/5 border-primary/20 text-primary': isYearly }"
             @click="isYearly = true"
           >
             Yearly billing
@@ -52,8 +52,7 @@
             </p>
             <UButton
               :variant="plan.featured ? 'solid' : 'outline'"
-              block
-              class="mt-8"
+              class="mt-8 w-full"
               :disabled="loading"
               @click="selectPlan(plan)"
             >

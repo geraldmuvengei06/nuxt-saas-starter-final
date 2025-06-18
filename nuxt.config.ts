@@ -6,21 +6,17 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode',
   ],
   devtools: { enabled: true },
 
-  css: ['~/assets/css/main.css'],
+  // Nuxt UI v3 handles CSS automatically
+  // No need for css: ['~/assets/css/main.css'] anymore
 
-  colorMode: {
-    preference: 'system', // default value of $colorMode.preference
-    fallback: 'light', // fallback value if not system preference found
-    hid: 'nuxt-color-mode-script',
-    globalName: '__NUXT_COLOR_MODE__',
-    componentName: 'ColorScheme',
-    classPrefix: '',
-    classSuffix: '',
-    storageKey: 'nuxt-color-mode',
+  // Nuxt UI v3 configuration
+  ui: {
+    colorMode: {
+      preference: 'system'
+    }
   },
 
   runtimeConfig: {
@@ -109,7 +105,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      exclude: ['/', '/register', '/forgot-password', '/reset-password', 'confirm', '/pricing', '/about', '/contact', '/features'], // Exclude marketing/public pages
+      exclude: ['/', '/en', '/es', '/de', '/fr', '/register', '/forgot-password', '/reset-password', 'confirm', '/pricing', '/about', '/contact', '/features'], // Exclude marketing/public pages
     },
   },
 

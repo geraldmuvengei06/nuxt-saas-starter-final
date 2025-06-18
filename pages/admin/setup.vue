@@ -4,7 +4,7 @@
     <UCard>
       <template #header>
         <div class="text-center">
-          <Icon name="i-heroicons-shield-check" class="mx-auto h-12 w-12 text-blue-500" />
+          <UIcon name="i-heroicons-shield-check" class="mx-auto h-12 w-12 text-blue-500" />
           <h1 class="mt-4 text-xl font-bold text-gray-900 dark:text-white">Super Admin Setup</h1>
           <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
             Initialize the first super admin account
@@ -15,7 +15,7 @@
       <div class="space-y-6">
         <div v-if="!hasSuperAdmin" class="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
           <div class="flex">
-            <Icon name="i-heroicons-information-circle" class="h-5 w-5 text-blue-400" />
+            <UIcon name="i-heroicons-information-circle" class="h-5 w-5 text-blue-400" />
             <div class="ml-3">
               <h3 class="text-sm font-medium text-blue-800 dark:text-blue-200">Setup Required</h3>
               <p class="mt-1 text-sm text-blue-700 dark:text-blue-300">
@@ -28,7 +28,7 @@
 
         <div v-else class="rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
           <div class="flex">
-            <Icon name="i-heroicons-check-circle" class="h-5 w-5 text-green-400" />
+            <UIcon name="i-heroicons-check-circle" class="h-5 w-5 text-green-400" />
             <div class="ml-3">
               <h3 class="text-sm font-medium text-green-800 dark:text-green-200">Setup Complete</h3>
               <p class="mt-1 text-sm text-green-700 dark:text-green-300">

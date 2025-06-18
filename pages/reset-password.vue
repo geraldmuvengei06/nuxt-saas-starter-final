@@ -44,7 +44,7 @@
 
           <UButton
             type="submit"
-            block
+            class="w-full"
             :loading="loading"
             :disabled="
               loading ||
@@ -66,7 +66,7 @@
         </form>
 
         <div class="mt-6 text-center">
-          <NuxtLink to="/login" class="text-primary-600 hover:text-primary-500 text-sm font-medium">
+          <NuxtLink to="/login" class="text-primary hover:text-primary/80 text-sm font-medium">
             {{ $t('auth.forgotPassword.backToLogin') }}
           </NuxtLink>
         </div>

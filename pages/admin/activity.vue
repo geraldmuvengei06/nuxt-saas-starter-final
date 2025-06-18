@@ -121,7 +121,7 @@
 
         <!-- Empty State -->
         <div v-if="filteredLogs.length === 0" class="py-8 text-center">
-          <Icon name="i-heroicons-document-text" class="mx-auto h-12 w-12 text-gray-400" />
+          <UIcon name="i-heroicons-document-text" class="mx-auto h-12 w-12 text-gray-400" />
           <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No activity logs</h3>
           <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
             Activity logs will appear here as actions are performed.

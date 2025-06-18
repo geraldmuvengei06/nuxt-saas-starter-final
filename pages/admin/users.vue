@@ -79,7 +79,7 @@
 
       <!-- Empty State -->
       <div v-else class="py-12 text-center">
-        <Icon name="i-heroicons-users" class="mx-auto h-12 w-12 text-gray-400" />
+        <UIcon name="i-heroicons-users" class="mx-auto h-12 w-12 text-gray-400" />
         <h3 class="mt-2 text-sm font-semibold text-gray-900 dark:text-white">No users found</h3>
       </div>
 

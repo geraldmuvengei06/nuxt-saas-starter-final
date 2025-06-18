@@ -86,15 +86,15 @@
           <div class="space-y-2 border-t border-gray-200 pt-4 dark:border-gray-700">
             <template v-if="!user">
               <NuxtLink :to="localePath('login')" @click="mobileMenuOpen = false">
-                <UButton variant="ghost" block>{{ $t('navigation.signIn') }}</UButton>
+                <UButton variant="ghost" class="w-full">{{ $t('navigation.signIn') }}</UButton>
               </NuxtLink>
               <NuxtLink :to="localePath('register')" @click="mobileMenuOpen = false">
-                <UButton block>{{ $t('navigation.register') }}</UButton>
+                <UButton class="w-full">{{ $t('navigation.register') }}</UButton>
               </NuxtLink>
             </template>
             <template v-else>
               <NuxtLink :to="localePath('dashboard')" @click="mobileMenuOpen = false">
-                <UButton variant="outline" block>{{ $t('navigation.dashboard') }}</UButton>
+                <UButton variant="outline" class="w-full">{{ $t('navigation.dashboard') }}</UButton>
               </NuxtLink>
             </template>
           </div>

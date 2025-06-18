@@ -9,7 +9,7 @@
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           {{ $t('common.or') }}
-          <NuxtLink to="/register" class="text-primary-600 hover:text-primary-500 font-medium">
+          <NuxtLink to="/register" class="text-primary hover:text-primary/80 font-medium">
             {{ $t('auth.login.createAccount') }}
           </NuxtLink>
         </p>
@@ -43,13 +43,13 @@
             <UCheckbox v-model="form.rememberMe" :label="$t('auth.login.rememberMe')" />
             <NuxtLink
               to="/forgot-password"
-              class="text-primary-600 hover:text-primary-500 text-sm font-medium"
+              class="text-primary hover:text-primary/80 text-sm font-medium"
             >
               {{ $t('auth.login.forgotPassword') }}
             </NuxtLink>
           </div>
 
-          <UButton type="submit" block :loading="loading" :disabled="loading" class="w-full">
+          <UButton type="submit" class="w-full" :loading="loading" :disabled="loading">
             {{ $t('auth.login.signIn') }}
           </UButton>
 
@@ -71,7 +71,7 @@
               :disabled="loading || providerLoading"
               @click="signInWithProvider('google')"
             >
-              <Icon name="i-simple-icons-google" class="h-5 w-5" />
+              <UIcon name="i-simple-icons-google" class="h-5 w-5" />
               {{ $t('auth.login.google') }}
             </UButton>
             <UButton
@@ -87,7 +87,7 @@
 
           <UButton
             variant="outline"
-            block
+            class="w-full"
             :loading="magicLinkLoading"
             :disabled="loading || !form.email"
             @click="signInWithMagicLink"

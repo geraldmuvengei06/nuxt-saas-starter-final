@@ -16,7 +16,7 @@
       <UCard>
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <Icon name="i-heroicons-users" class="h-8 w-8 text-blue-500" />
+            <UIcon name="i-heroicons-users" class="h-8 w-8 text-blue-500" />
           </div>
           <div class="ml-4">
             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Users</p>
@@ -30,7 +30,7 @@
       <UCard>
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <Icon name="i-heroicons-user-group" class="h-8 w-8 text-green-500" />
+            <UIcon name="i-heroicons-user-group" class="h-8 w-8 text-green-500" />
           </div>
           <div class="ml-4">
             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Teams</p>
@@ -44,7 +44,7 @@
       <UCard>
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <Icon name="i-heroicons-credit-card" class="h-8 w-8 text-orange-500" />
+            <UIcon name="i-heroicons-credit-card" class="h-8 w-8 text-orange-500" />
           </div>
           <div class="ml-4">
             <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Subscriptions</p>
@@ -66,7 +66,7 @@
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Manage Users</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400">View and manage user accounts</p>
           </div>
-          <Icon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
+          <UIcon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
         </div>
       </UCard>
 
@@ -79,7 +79,7 @@
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Manage Teams</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400">View and manage teams</p>
           </div>
-          <Icon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
+          <UIcon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
         </div>
       </UCard>
 
@@ -92,7 +92,7 @@
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">User Feedback</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400">Review user feedback</p>
           </div>
-          <Icon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
+          <UIcon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
         </div>
       </UCard>
 
@@ -105,7 +105,7 @@
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Activity Logs</h3>
             <p class="text-sm text-gray-500 dark:text-gray-400">Monitor system activity</p>
           </div>
-          <Icon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
+          <UIcon name="i-heroicons-arrow-right" class="h-5 w-5 text-gray-400" />
         </div>
       </UCard>
     </div>
@@ -118,7 +118,7 @@
 
       <div class="space-y-4">
         <div class="bg-gray-50000 flex items-center space-x-3 rounded-lg p-3 dark:bg-gray-800">
-          <Icon name="i-heroicons-information-circle" class="h-5 w-5 text-blue-500" />
+          <UIcon name="i-heroicons-information-circle" class="h-5 w-5 text-blue-500" />
           <div>
             <p class="text-sm font-medium text-gray-900 dark:text-white">Admin Dashboard</p>
             <p class="text-xs text-gray-500 dark:text-gray-400">
@@ -128,7 +128,7 @@
         </div>
 
         <div class="bg-gray-50000 flex items-center space-x-3 rounded-lg p-3 dark:bg-gray-800">
-          <Icon name="i-heroicons-shield-check" class="h-5 w-5 text-green-500" />
+          <UIcon name="i-heroicons-shield-check" class="h-5 w-5 text-green-500" />
           <div>
             <p class="text-sm font-medium text-gray-900 dark:text-white">Role-Based Access</p>
             <p class="text-xs text-gray-500 dark:text-gray-400">
