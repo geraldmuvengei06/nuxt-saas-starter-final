@@ -1,0 +1,53 @@
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+  },
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    extraFileExtensions: ['.vue'],
+  },
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:nuxt/recommended',
+    'plugin:prettier/recommended', // This must come last to override other configs
+  ],
+  plugins: [],
+  rules: {
+    // Resolve conflicts with Nuxt auto-imports
+    'no-undef': 'off',
+    'import/no-unresolved': 'off',
+
+    // Resolve conflicts with Vue component naming in Nuxt
+    'vue/multi-word-component-names': 'off',
+
+    // Resolve conflicts with TypeScript
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
+
+    // Reduce noise in development
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+
+    // Resolve conflicts with Prettier
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+  },
+  // Add settings to resolve imports
+  settings: {
+    'import/resolver': {
+      typescript: {},
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      },
+    },
+  },
+}

@@ -13,9 +13,16 @@
       </div>
 
       <UCard>
-        <form class="space-y-6" @submit.prevent="updatePassword">
+        <form
+          class="space-y-6"
+          @submit.prevent="updatePassword"
+        >
           <div>
-            <UFormGroup :label="$t('auth.resetPassword.password')" name="password" required>
+            <UFormGroup
+              :label="$t('auth.resetPassword.password')"
+              name="password"
+              required
+            >
               <UInput
                 v-model="form.password"
                 type="password"
@@ -47,12 +54,11 @@
             class="w-full"
             :loading="loading"
             :disabled="
-              loading ||
-              !form.password ||
-              !form.confirmPassword ||
-              form.password !== form.confirmPassword
+              loading
+                || !form.password
+                || !form.confirmPassword
+                || form.password !== form.confirmPassword
             "
-            class="w-full"
           >
             {{ $t('auth.resetPassword.updatePassword') }}
           </UButton>
@@ -66,7 +72,10 @@
         </form>
 
         <div class="mt-6 text-center">
-          <NuxtLink to="/login" class="text-primary hover:text-primary/80 text-sm font-medium">
+          <NuxtLink
+            to="/login"
+            class="text-primary hover:text-primary/80 text-sm font-medium"
+          >
             {{ $t('auth.forgotPassword.backToLogin') }}
           </NuxtLink>
         </div>
@@ -97,7 +106,7 @@ const updatePassword = async () => {
   if (form.value.password !== form.value.confirmPassword) {
     toast.add({
       title: t('forms.passwordsDoNotMatch'),
-      color: 'red',
+      // color: 'red',
     })
     return
   }
@@ -105,7 +114,7 @@ const updatePassword = async () => {
   if (form.value.password.length < 8) {
     toast.add({
       title: t('forms.passwordTooShort'),
-      color: 'red',
+      // color: 'red',
     })
     return
   }
@@ -129,13 +138,15 @@ const updatePassword = async () => {
     setTimeout(() => {
       router.push('/dashboard')
     }, 2000)
-  } catch (error: any) {
+  }
+  catch (error: any) {
     toast.add({
       title: t('auth.messages.passwordUpdateError'),
       description: error.message,
       color: 'red',
     })
-  } finally {
+  }
+  finally {
     loading.value = false
   }
 }

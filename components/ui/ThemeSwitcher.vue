@@ -1,17 +1,15 @@
 <template>
-  <UDropdown :items="themeMenuItems" :popper="{ placement: 'bottom-start' }">
+  <UDropdown :items="themeOptions">
     <UButton
-      variant="ghost"
       color="gray"
-      :icon="currentTheme.icon"
-      class="h-8 w-8"
-      :aria-label="t('theme.selectTheme')"
+      variant="ghost"
+      icon="i-heroicons-moon-20-solid"
+      :aria-label="'Change theme'"
     />
 
     <template #item="{ item }">
       <div class="flex items-center gap-2">
         <UIcon :name="item.icon" class="h-4 w-4" />
-
         <span>{{ item.label }}</span>
         <UIcon
           v-if="item.key === colorMode.preference"
@@ -23,15 +21,28 @@
   </UDropdown>
 </template>
 
-<script setup lang="ts">
-const { t } = useI18n()
-const { colorMode, themeOptions, currentTheme, setTheme } = useTheme()
+<script setup>
+const colorMode = useColorMode()
 
-const themeMenuItems = computed(() => [
-  themeOptions.map(theme => ({
-    ...theme,
-    label: t(`theme.${theme.key}`),
-    click: () => setTheme(theme.key),
-  })),
+// Define theme options with proper structure
+const themeOptions = computed(() => [
+  {
+    key: 'light',
+    label: 'Light',
+    icon: 'i-heroicons-sun-20-solid',
+    click: () => (colorMode.preference = 'light'),
+  },
+  {
+    key: 'dark',
+    label: 'Dark',
+    icon: 'i-heroicons-moon-20-solid',
+    click: () => (colorMode.preference = 'dark'),
+  },
+  {
+    key: 'system',
+    label: 'System',
+    icon: 'i-heroicons-computer-desktop-20-solid',
+    click: () => (colorMode.preference = 'system'),
+  },
 ])
 </script>

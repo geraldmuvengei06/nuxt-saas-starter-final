@@ -1,16 +1,31 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/supabase', '@nuxt/ui', '@pinia/nuxt', '@nuxt/eslint', '@nuxtjs/i18n'],
-  devtools: { enabled: true },
+  modules: [
+    '@nuxtjs/supabase',
+    '@nuxt/ui',
+    '@pinia/nuxt',
+    '@nuxt/eslint',
+    '@nuxtjs/i18n',
+    '@nuxtjs/color-mode',
+  ],
+  devtools: { enabled: false },
+
+  colorMode: {
+    classSuffix: '',
+    preference: 'system',
+    fallback: 'light',
+  },
 
   // Nuxt UI v3 handles CSS automatically
   // No need for css: ['~/assets/css/main.css'] anymore
 
   // Nuxt UI v3 configuration
   ui: {
-    colorMode: {
-      preference: 'system',
-    },
+    // Remove colorMode: true since we're using @nuxtjs/color-mode module
+    primary: 'green',
+    colors: ['primary', 'secondary'],
   },
 
   runtimeConfig: {
@@ -29,6 +44,9 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2025-05-15',
+  vite: {
+    plugins: [tailwindcss()],
+  },
 
   typescript: {
     strict: false,

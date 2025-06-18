@@ -1,54 +1,51 @@
-export const useTheme = () => {
-  const colorMode = useColorMode()
+import { useThemeStore } from '~/store/theme'
 
-  const isDark = computed(() => colorMode.value === 'dark')
-  const isLight = computed(() => colorMode.value === 'light')
-  const isSystem = computed(() => colorMode.preference === 'system')
+export function useTheme() {
+  // Safe wrapper around the theme store
+  let themeStore: ReturnType<typeof useThemeStore> | null = null
 
-  const themeOptions = [
-    {
-      key: 'light',
-      label: 'Light',
-      icon: 'i-heroicons-sun',
-    },
-    {
-      key: 'dark',
-      label: 'Dark',
-      icon: 'i-heroicons-moon',
-    },
-    {
-      key: 'system',
-      label: 'System',
-      icon: 'i-heroicons-computer-desktop',
-    },
-  ]
-
-  const currentTheme = computed(
-    () => themeOptions.find(theme => theme.key === colorMode.preference) || themeOptions[0]
-  )
-
-  const setTheme = (theme: string) => {
-    colorMode.preference = theme
+  try {
+    themeStore = useThemeStore()
+  } catch (error) {
+    console.warn('Theme store not available yet, returning default values')
   }
 
-  const toggleTheme = () => {
-    if (colorMode.preference === 'light') {
-      setTheme('dark')
-    } else if (colorMode.preference === 'dark') {
-      setTheme('system')
-    } else {
-      setTheme('light')
+  const getThemeColor = () => themeStore?.color || 'green'
+  const getThemeRadius = () => themeStore?.radius || 'md'
+  const getColorMode = () => themeStore?.colorMode || 'system'
+
+  const setThemeColor = (color: string) => {
+    if (themeStore) {
+      themeStore.setColor(color as any)
+    }
+  }
+
+  const setThemeRadius = (radius: string) => {
+    if (themeStore) {
+      themeStore.setRadius(radius as any)
+    }
+  }
+
+  const setColorMode = (mode: 'light' | 'dark' | 'system') => {
+    if (themeStore) {
+      themeStore.setColorMode(mode)
+    }
+  }
+
+  const initializeTheme = () => {
+    if (themeStore) {
+      themeStore.initialize()
     }
   }
 
   return {
-    colorMode,
-    isDark,
-    isLight,
-    isSystem,
-    themeOptions,
-    currentTheme,
-    setTheme,
-    toggleTheme,
+    getThemeColor,
+    getThemeRadius,
+    getColorMode,
+    setThemeColor,
+    setThemeRadius,
+    setColorMode,
+    initializeTheme,
+    themeStore,
   }
 }

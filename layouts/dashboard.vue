@@ -119,4 +119,78 @@ const userMenuItems = computed(() => [
     },
   ],
 ])
+
+const isSidebarOpen = ref(true)
+
+const navigationItems = [
+  { label: 'Dashboard', to: '/dashboard', icon: 'i-heroicons-home' },
+  { label: 'Projects', to: '/projects', icon: 'i-heroicons-folder' },
+  { label: 'Settings', to: '/settings', icon: 'i-heroicons-cog-6-tooth' },
+  { label: 'Billing', to: '/billing', icon: 'i-heroicons-credit-card' },
+]
 </script>
+
+<template>
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <UHeader class="border-b border-neutral-200 dark:border-neutral-800">
+      <template #left>
+        <NuxtLink to="/" class="flex items-center gap-2">
+          <UIcon name="i-heroicons-cube" class="text-primary-500 size-8" />
+          <span class="font-semibold text-lg">SaaS Starter</span>
+        </NuxtLink>
+      </template>
+
+      <template #right>
+        <div class="flex items-center gap-2">
+          <ThemeSwitcher />
+
+          <!-- Using DropdownMenu instead of Dropdown -->
+          <UDropdownMenu
+            :items="[
+              { label: 'Profile', to: '/settings/profile', icon: 'i-heroicons-user-circle' },
+              {
+                label: 'Logout',
+                to: '/api/auth/logout',
+                icon: 'i-heroicons-arrow-right-on-rectangle',
+              },
+            ]"
+          >
+            <UButton color="neutral" variant="ghost" icon="i-heroicons-user-circle">
+              Account
+            </UButton>
+          </UDropdownMenu>
+        </div>
+      </template>
+    </UHeader>
+
+    <div class="flex flex-1">
+      <!-- Sidebar - Using NavigationMenu instead of DashboardSidebarLinks -->
+      <aside
+        class="w-64 transition-all duration-300 border-r border-neutral-200 dark:border-neutral-800 bg-muted"
+        :class="{ '-ml-64': !isSidebarOpen }"
+      >
+        <div class="p-4">
+          <UNavigationMenu orientation="vertical" :items="navigationItems" />
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <div class="p-4 border-b border-neutral-200 dark:border-neutral-800 flex items-center">
+          <!-- DashboardNavbarToggle is now DashboardSidebarToggle -->
+          <UButton
+            icon="i-heroicons-bars-3"
+            color="neutral"
+            variant="ghost"
+            @click="isSidebarOpen = !isSidebarOpen"
+          />
+        </div>
+
+        <div class="p-4 overflow-y-auto flex-1">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

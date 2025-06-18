@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <!-- UApp component replaces UModals, USlideovers, and UNotifications -->
+  <UApp>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <UNotifications />
-  </div>
+  </UApp>
 </template>

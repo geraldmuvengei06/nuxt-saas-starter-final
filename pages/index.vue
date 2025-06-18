@@ -17,7 +17,11 @@
               <UButton size="lg" @click="$router.push('/register')">
                 {{ $t('home.hero.getStarted') }}
               </UButton>
-              <UButton variant="outline" size="lg" @click="$router.push('/pricing')">
+              <UButton
+                variant="outline"
+                size="lg"
+                @click="$router.push('/pricing')"
+              >
                 {{ $t('home.hero.viewPricing') }}
               </UButton>
             </div>
@@ -39,7 +43,11 @@
         </div>
 
         <div class="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div v-for="feature in features" :key="feature.name" class="text-center">
+          <div
+            v-for="feature in features"
+            :key="feature.name"
+            class="text-center"
+          >
             <div
               class="bg-primary mx-auto flex h-12 w-12 items-center justify-center rounded-md text-white"
             >
@@ -63,7 +71,9 @@
       >
         <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
           <span class="block">{{ $t('home.cta.title') }}</span>
-          <span class="text-primary/20 block">{{ $t('home.cta.subtitle') }}</span>
+          <span class="text-primary/20 block">{{
+            $t('home.cta.subtitle')
+          }}</span>
         </h2>
         <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
           <div class="inline-flex rounded-md shadow">
@@ -71,6 +81,23 @@
               {{ $t('home.cta.getStarted') }}
             </UButton>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold mb-4">Welcome to Nuxt SaaS Starter</h1>
+          <p class="mb-6">
+            A production-ready starter kit for your next SaaS project.
+          </p>
+        </div>
+
+        <div class="flex gap-4 justify-center">
+          <UButton to="/register" color="primary"> Get Started </UButton>
+          <UButton to="/login" color="gray" variant="outline"> Login </UButton>
         </div>
       </div>
     </section>

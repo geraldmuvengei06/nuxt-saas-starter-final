@@ -4,46 +4,63 @@
   >
     <div class="w-full max-w-md space-y-8">
       <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+        <h2
+          class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white"
+        >
           {{ $t('auth.register.title') }}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           {{ $t('common.or') }}
-          <NuxtLink to="/login" class="text-primary hover:text-primary/80 font-medium">
+          <NuxtLink
+            to="/login"
+            class="text-primary hover:text-primary/80 font-medium"
+          >
             {{ $t('auth.register.signIn') }}
           </NuxtLink>
         </p>
       </div>
 
       <UCard>
-        <form class="space-y-6" @submit.prevent="signUp">
+        <form class="space-y-6" @submit.prevent="handleRegister">
           <div>
             <UFormGroup :label="$t('auth.register.name')" name="fullName">
               <UInput
-                v-model="form.fullName"
+                v-model="form.name"
                 type="text"
                 :placeholder="$t('auth.register.enterName')"
-              />
-            </UFormGroup>
-          </div>
-
-          <div>
-            <UFormGroup :label="$t('auth.register.email')" name="email" required>
-              <UInput
-                v-model="form.email"
-                type="email"
-                :placeholder="$t('auth.register.enterEmail')"
+                autocomplete="name"
                 required
               />
             </UFormGroup>
           </div>
 
           <div>
-            <UFormGroup :label="$t('auth.register.password')" name="password" required>
+            <UFormGroup
+              :label="$t('auth.register.email')"
+              name="email"
+              required
+            >
+              <UInput
+                v-model="form.email"
+                type="email"
+                :placeholder="$t('auth.register.enterEmail')"
+                autocomplete="email"
+                required
+              />
+            </UFormGroup>
+          </div>
+
+          <div>
+            <UFormGroup
+              :label="$t('auth.register.password')"
+              name="password"
+              required
+            >
               <UInput
                 v-model="form.password"
                 type="password"
                 :placeholder="$t('auth.register.enterPassword')"
+                autocomplete="new-password"
                 required
               />
             </UFormGroup>
@@ -75,8 +92,8 @@
           <UButton
             type="submit"
             class="w-full"
-            :loading="loading"
-            :disabled="loading || !isFormValid"
+            :loading="form.loading"
+            :disabled="form.loading || !isFormValid"
           >
             Create Account
           </UButton>
@@ -94,8 +111,8 @@
             <UButton
               variant="outline"
               :loading="providerLoading === 'google'"
-              :disabled="loading || providerLoading"
-              @click="signUpWithProvider('google')"
+              :disabled="form.loading || providerLoading"
+              @click="handleGoogleRegister"
             >
               <Icon name="i-simple-icons-google" class="h-5 w-5" />
               Google
@@ -103,7 +120,7 @@
             <UButton
               variant="outline"
               :loading="providerLoading === 'github'"
-              :disabled="loading || providerLoading"
+              :disabled="form.loading || providerLoading"
               @click="signUpWithProvider('github')"
             >
               <Icon name="i-simple-icons-github" class="h-5 w-5" />
@@ -128,7 +145,8 @@ const toast = useToast()
 const config = useRuntimeConfig()
 
 // Check if we're in demo mode
-const isDemoMode = config.public.supabaseUrl === 'https://placeholder.supabase.co'
+const isDemoMode =
+  config.public.supabaseUrl === 'https://placeholder.supabase.co'
 
 const loading = ref(false)
 const providerLoading = ref<string | null>(null)
@@ -139,6 +157,8 @@ const form = reactive({
   password: '',
   confirmPassword: '',
   agreeToTerms: false,
+  loading: false,
+  error: '',
 })
 
 const isFormValid = computed(() => {
@@ -151,11 +171,12 @@ const isFormValid = computed(() => {
   )
 })
 
-const signUp = async () => {
+const handleRegister = async () => {
   if (isDemoMode) {
     toast.add({
       title: 'Demo Mode',
-      description: 'This is a demo. Please configure Supabase credentials to enable registration.',
+      description:
+        'This is a demo. Please configure Supabase credentials to enable registration.',
       color: 'blue',
     })
     return
@@ -171,7 +192,7 @@ const signUp = async () => {
   }
 
   try {
-    loading.value = true
+    form.loading = true
     const { error } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
@@ -183,23 +204,61 @@ const signUp = async () => {
       },
     })
 
-    if (error) throw error
+    if (error) {
+      form.error = error.message
+      toast.add({
+        title: 'Registration failed',
+        description: error.message,
+        color: 'error',
+      })
+    } else {
+      toast.add({
+        title: 'Registration successful',
+        description: 'Please check your email to verify your account',
+        color: 'success',
+      })
 
+      await router.push('/login')
+    }
+  } catch (err) {
+    console.error(err)
+    form.error = 'An unexpected error occurred'
     toast.add({
-      title: 'Success!',
-      description: 'Please check your email to verify your account.',
-      color: 'green',
-    })
-
-    await router.push('/login')
-  } catch (error: any) {
-    toast.add({
-      title: 'Error',
-      description: error.message,
-      color: 'red',
+      title: 'Registration failed',
+      description: 'An unexpected error occurred',
+      color: 'error',
     })
   } finally {
-    loading.value = false
+    form.loading = false
+  }
+}
+
+const handleGoogleRegister = async () => {
+  try {
+    providerLoading.value = 'google'
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/confirm`,
+      },
+    })
+
+    if (error) {
+      toast.add({
+        title: 'Registration failed',
+        description: error.message,
+        color: 'error',
+      })
+    }
+  } catch (err) {
+    console.error(err)
+    toast.add({
+      title: 'Registration failed',
+      description: 'An unexpected error occurred',
+      color: 'error',
+    })
+  } finally {
+    providerLoading.value = null
   }
 }
 
