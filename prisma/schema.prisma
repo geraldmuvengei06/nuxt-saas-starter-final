@@ -24,13 +24,13 @@ enum UserRole {
 }
 
 model Profile {
-    id        String   @id @db.Uuid // This directly references auth.users(id)
-    email     String   @unique
-    fullName  String?  @map("full_name")
-    avatarUrl String?  @map("avatar_url")
-    role      UserRole @default(USER)
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt @map("updated_at")
+    id        String    @id @db.Uuid // This directly references auth.users(id)
+    email     String    @unique
+    fullName  String?   @map("full_name")
+    avatarUrl String?   @map("avatar_url")
+    role      UserRole? @default(USER)
+    createdAt DateTime? @default(now()) @map("created_at")
+    updatedAt DateTime? @updatedAt @map("updated_at")
 
     // Relations
     subscription Subscription?
